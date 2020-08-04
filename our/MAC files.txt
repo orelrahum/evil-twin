@@ -1,0 +1,9 @@
+Orel TENDA adapter : c8:3a:35:c2:e0:b6  (wlan0)
+
+Orel black tp-link adapter :2e:46:d5:7b:f4:4e (wlan1)
+
+Rahum-Opal AP : 84:16:F9:3B:C9:8
+
+cyber_lab2.4 AP : C0:FF:D4:7F:D7:4
+
+
