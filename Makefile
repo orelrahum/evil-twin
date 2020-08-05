@@ -2,7 +2,7 @@
 
 all: 
 	git add -A
-	git commit -m "commit"
+	git commit -m "commit-orel"
 	git push -u origin master
 
 
