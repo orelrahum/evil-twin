@@ -41,7 +41,7 @@ Start the AP by shell script:
 1. Go to var/www/html folder and open terminal by right click
 2. Run in terminal:
 sudo chown www-data:www-data ./*
-sudo bash ap.sh wlan0 eth0 Afikim
+sudo bash ap.sh wlan0 eth0 Tomiiiii
 4. AP is started you done ;)
 
 * With iwconfig command you can get names of devices on the network wlan0, eth0....

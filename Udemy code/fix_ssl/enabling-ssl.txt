@@ -1,0 +1,9 @@
+openssl req -new -x509 -days 365 -out /root/certs/cert.pem -keyout /root/certs/cert.key
+
+
+a2enmod rewrite  
+a2enmod ssl
+systemctl restart apache
+
+
+

