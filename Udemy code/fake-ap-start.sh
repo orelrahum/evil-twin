@@ -15,6 +15,7 @@ iptables -P FORWARD ACCEPT
 dnsmasq -C dnsmasq.conf
 hostapd hostapd.conf -B
 service apache2 start
+route add default gw 10.0.0.1
 
 
 
