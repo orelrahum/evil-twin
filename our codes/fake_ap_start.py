@@ -1,6 +1,10 @@
 import os
+import sys
+if sys.argv[0] == 1:
+    os.system('service NetworkManager stop')
+if sys.argv[0] == 2:
+    os.system('service network-manager stop')
 
-os.system('service NetworkManager stop')
 os.system('airmon-ng check kill')
 os.system('ifconfig wlan0 10.0.0.1 netmask 255.255.255.0')
 os.system('route add default gw 10.0.0.1')
