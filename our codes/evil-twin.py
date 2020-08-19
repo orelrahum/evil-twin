@@ -7,7 +7,8 @@ linuxOS = input("for kali press 1, for ubuntu press 2: \n")
 
 if yourdeside == "1":
     interface = input("pls enter your interface name: \n")
-    line="python3 fake_ap_start.py " + linuxOS +" " + interface
+    ssid=input(" pls enter your ssid name: \n")
+    line="python3 fake_ap_start.py " + linuxOS +" " + interface + " " + ssid
     os.system(line)
 
 if yourdeside == "2":

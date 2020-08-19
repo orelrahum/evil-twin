@@ -2,8 +2,8 @@ import os
 import sys
 
 
-line1="interface="+sys.argv[1]+"\n"
-line2="ssid=BSD\n"
+line1="interface="+ sys.argv[1] + "\n"
+line2="ssid=" + sys.argv[2] + "\n"
 line3="channel=1\n"
 line4="driver=nl80211\n"
 

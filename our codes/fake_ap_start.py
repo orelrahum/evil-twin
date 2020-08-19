@@ -20,7 +20,7 @@ os.system('iptables --delete-chain')
 os.system('iptables --table nat --delete-chain')
 os.system('iptables -P FORWARD ACCEPT')
 
-line="python3 create_files.py "+sys.argv[2]
+line="python3 create_files.py "+sys.argv[2] + " " + sys.argv[3]
 os.system(line)
 
 os.system('dnsmasq -C dnsmasq.conf')
