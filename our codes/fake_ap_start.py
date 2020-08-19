@@ -1,5 +1,8 @@
 import os
 import sys
+
+os.system('systemctl disable systemd-resolved.service')
+os.system('systemctl stop systemd-resolved')
 if sys.argv[1] == 1:
     os.system('service NetworkManager stop')
 if sys.argv[1] == 2:

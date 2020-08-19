@@ -1,5 +1,9 @@
 import os
 import sys
+
+os.system('systemctl disable systemd-resolved.service')
+os.system('systemctl stop systemd-resolved')
+
 if sys.argv[1] == 1:
     os.system('service NetworkManager stop')
 if sys.argv[1] == 2:
@@ -49,5 +53,7 @@ if close=="1":
     os.system('service dnsmasq stop')
     os.system('service rpcbind stop')
     os.system('killall dnsmasq')
-    os.system('killall hostapd')   
+    os.system('killall hostapd')
+    os.system('systemctl enable systemd-resolved.service') 
+    os.system('systemctl start systemd-resolved')   
 
