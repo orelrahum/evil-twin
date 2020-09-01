@@ -4,14 +4,24 @@ import sys
 os.system('systemctl disable systemd-resolved.service')
 os.system('systemctl stop systemd-resolved')
 
-if sys.argv[1] == 1:
+if sys.argv[1] == "1":
     os.system('service NetworkManager stop')
-if sys.argv[1] == 2:
+if sys.argv[1] == "2":
     os.system('service network-manager stop')
 
 ifconfig="ifconfig "+sys.argv[2]+" 10.0.0.1 netmask 255.255.255.0"
 
-os.system('airmon-ng check kill')
+os.system('airmon-ng check')
+# code that replace airmon-ng
+os.system(' pkill -9 hostapd')
+os.system(' pkill -9 dnsmasq')
+os.system(' pkill -9 wpa_supplicant')
+os.system(' pkill -9 avahi-daemon')
+os.system(' pkill -9 dhclient')
+os.system('killall dnsmasq')
+os.system('killall hostapd')
+
+
 os.system(ifconfig)
 os.system('route add default gw 10.0.0.1')
 
