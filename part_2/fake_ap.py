@@ -38,7 +38,7 @@ os.system(line)
 os.system('dnsmasq -C dnsmasq.conf')
 os.system('service apache2 start')
 os.system('route add default gw 10.0.0.1')
-os.system('hostapd hostapd.conf')
+os.system('hostapd hostapd.conf && route add default gw 10.0.0.1')
 os.system('service apache2 start')
 os.system('route add default gw 10.0.0.1')
 
