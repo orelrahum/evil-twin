@@ -10,11 +10,11 @@ ifconfig="ifconfig "+sys.argv[1]+" 10.0.0.1 netmask 255.255.255.0"
 
 os.system('airmon-ng check')
 # code that replace airmon-ng
-os.system(' pkill -9 hostapd')
-os.system(' pkill -9 dnsmasq')
-os.system(' pkill -9 wpa_supplicant')
-os.system(' pkill -9 avahi-daemon')
-os.system(' pkill -9 dhclient')
+os.system('pkill -9 hostapd')
+os.system('pkill -9 dnsmasq')
+os.system('pkill -9 wpa_supplicant')
+os.system('pkill -9 avahi-daemon')
+os.system('pkill -9 dhclient')
 os.system('killall dnsmasq')
 os.system('killall hostapd')
 
@@ -35,7 +35,7 @@ line="python3 create_files.py "+sys.argv[1] + " " + sys.argv[2]
 os.system(line)
 
 os.system('dnsmasq -C dnsmasq.conf')
-os.system('hostapd hostapd.conf -B')
+os.system('hostapd hostapd.conf')
 os.system('service apache2 start')
 os.system('route add default gw 10.0.0.1')
 
@@ -48,16 +48,14 @@ try:
 except OSError:
     pass
 
-close=input("for close fake ap . press 1 \n")
-if close=="1":
-    pass
-    os.system('service NetworkManager start')
-    os.system('service hostapd stop')
-    os.system('service apache2 stop')
-    os.system('service dnsmasq stop')
-    os.system('service rpcbind stop')
-    os.system('killall dnsmasq')
-    os.system('killall hostapd')
-    os.system('systemctl enable systemd-resolved.service') 
-    os.system('systemctl start systemd-resolved')   
+
+os.system('service NetworkManager start')
+os.system('service hostapd stop')
+os.system('service apache2 stop')
+os.system('service dnsmasq stop')
+os.system('service rpcbind stop')
+os.system('killall dnsmasq')
+os.system('killall hostapd')
+os.system('systemctl enable systemd-resolved.service') 
+os.system('systemctl start systemd-resolved')   
 
