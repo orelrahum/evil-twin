@@ -42,15 +42,8 @@ T  = '\033[93m' # tan
 
 
 ##############################################
-############### Interface mode ###############
+############### Interface Mode ###############
 ##############################################
-
-
-
-#**********************************************#
-#*************** Interface mode ***************#
-#**********************************************#
-
 
 # In this function the user choose the interface that will scan the network and send the deauthentication packets. #
 # In order to do so, we need to switched this interface to 'monitor mode'. #
@@ -80,8 +73,11 @@ def managed_mode():
 
 
 
+##############################################
+############### APs Scanning #################
+##############################################
 
-# Shell function for 'wifi_scan()'. #
+# Rapper function for 'wifi_scan()'. #
 def ap_scan():
     print(G + "Step 2: Scanning the network for AP to attack. \n")
     empty = input ("Press Enter to continue.........\n")
@@ -158,13 +154,16 @@ def scan_netwroks(pkt):
             # print ("BSSID: %s,\t Channel: %d, \t AP name: %s." %(bssid,channel, ssid))
 
 
+##############################################
+############# Clients Scanning ###############
+##############################################
+
 #Done
 def scan_clients(rmac, addr):
     global ap_mac
     ap_mac = rmac #ap_mac
     time = search_timeout * 2
-    print("\nScanning for clients")
-#    print("\nScanning for clinets:" ,rmac, "\tessid:" , addr ,  "\nscanning time:", time, "sec\n\nscanning...\n")
+    print("\nScanning for clients that connected to: " + )
     channel_changer = Thread(target=change_channel)
     channel_changer.daemon = True
     channel_changer.start()
