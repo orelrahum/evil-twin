@@ -36,6 +36,8 @@ def run_fake_ap():
 	os.system('hostapd hostapd.conf')
 	os.system('service apache2 start')
 	os.system('route add default gw 10.0.0.1')
+	time.sleep(2)
+
 
 def route_add():
 	os.system('route add default gw 10.0.0.1')
@@ -70,7 +72,6 @@ if __name__ == "__main__":
 	t1 = threading.Thread(target=run_fake_ap())
 	t2 = threading.Thread(route_add())
 	t1.start()
-	time.sleep(1)
 	t2.start()
 	t1.join()
 	t2.join()
