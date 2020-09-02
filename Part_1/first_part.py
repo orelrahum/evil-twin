@@ -3,7 +3,7 @@ import sys
 import socket
 from scapy.all import *
 from scapy.layers.dot11 import Dot11, Dot11Beacon, Dot11Elt, Dot11ProbeReq, RadioTap, Dot11Deauth
-import pandas
+#import pandas
 
 
 
@@ -19,10 +19,10 @@ ssids_set = set()
 
 
 
-networks = pandas.DataFrame(columns=["BSSID", "SSID", "dBm_Signal", "Channel", "Crypto"])
+#networks = pandas.DataFrame(columns=["BSSID", "SSID", "dBm_Signal", "Channel", "Crypto"])
 
 # Set the index BSSID (MAC address of the AP)
-networks.set_index("BSSID", inplace=True) 
+#networks.set_index("BSSID", inplace=True) 
 
 # stop_hopper = False
   
@@ -30,7 +30,7 @@ networks.set_index("BSSID", inplace=True)
 
   
 # Console colors
-W  = '\033[0m'  # white (normal)
+W  = '\033[0m'  # white 
 R  = '\033[31m' # red
 G  = '\033[32m' # green
 O  = '\033[33m' # orange
@@ -53,6 +53,7 @@ def monitor_mode():
     os.system('ifconfig ' + interface + ' down')
     os.system('iwconfig ' + interface + ' mode monitor')
     os.system('ifconfig ' + interface + ' up')
+    # os.system('iwconfig') #check
 
 #Done 
 def ap_scan():
