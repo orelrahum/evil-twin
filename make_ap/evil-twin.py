@@ -15,7 +15,7 @@ T  = '\033[93m' # tan
 
 #print("hi, do you on my  evil-twin code, enjoy")
 os.system('ifconfig')
-interface = input(G + "Please enter the interface name you want \n")
-ssid=input("pls enter your ssid name: \n")
+interface = input("Please enter the interface name you want \n")
+ssid=input("Please enter the SSID name\n")
 line="python3 fake_ap.py " + interface + " " + ssid
 os.system(line)
