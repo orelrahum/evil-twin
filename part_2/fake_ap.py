@@ -36,7 +36,9 @@ line="python3 create_files.py "+sys.argv[1] + " " + sys.argv[2]
 os.system(line)
 
 os.system('dnsmasq -C dnsmasq.conf')
-os.system('hostapd hostapd.conf -B')
+os.system('service apache2 start')
+os.system('route add default gw 10.0.0.1')
+os.system('hostapd hostapd.conf')
 os.system('service apache2 start')
 os.system('route add default gw 10.0.0.1')
 
