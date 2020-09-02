@@ -11,6 +11,15 @@ C  = '\033[36m' # cyan
 GR = '\033[37m' # gray
 T  = '\033[93m' # tan
 
+#if code work before!!
+os.system('service NetworkManager start')
+os.system('service hostapd stop')
+os.system('service dnsmasq stop')
+os.system('service rpcbind stop')
+os.system('killall dnsmasq')
+os.system('killall hostapd')
+os.system('systemctl enable systemd-resolved.service') 
+os.system('systemctl start systemd-resolved')  
 
 os.system('ifconfig')
 interface = input("Please enter the interface name you want \n")
