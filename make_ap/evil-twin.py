@@ -1,6 +1,5 @@
 import os
 
-
 # Console colors
 W  = '\033[0m'  # white (normal)
 R  = '\033[31m' # red
@@ -13,9 +12,8 @@ GR = '\033[37m' # gray
 T  = '\033[93m' # tan
 
 
-#print("hi, do you on my  evil-twin code, enjoy")
 os.system('ifconfig')
 interface = input("Please enter the interface name you want \n")
-ssid=input("Please enter the SSID name\n")
+ssid=input("Please enter the SSID name \n")
 line="python3 fake_ap.py " + interface + " " + ssid
 os.system(line)

@@ -3,10 +3,13 @@ import sys
 
 os.system('systemctl disable systemd-resolved.service')
 os.system('systemctl stop systemd-resolved')
-os.system('service NetworkManager stop')
 
+if sys.argv[1] == "1":
+    os.system('service NetworkManager stop')
+if sys.argv[1] == "2":
+    os.system('service network-manager stop')
 
-ifconfig="ifconfig "+sys.argv[1]+" 10.0.0.1 netmask 255.255.255.0"
+ifconfig="ifconfig "+sys.argv[2]+" 10.0.0.1 netmask 255.255.255.0"
 
 os.system('airmon-ng check')
 # code that replace airmon-ng
@@ -31,7 +34,7 @@ os.system('iptables --delete-chain')
 os.system('iptables --table nat --delete-chain')
 os.system('iptables -P FORWARD ACCEPT')
 
-line="python3 create_files.py "+sys.argv[1] + " " + sys.argv[2]
+line="python3 create_files.py "+sys.argv[2] + " " + sys.argv[3]
 os.system(line)
 
 os.system('dnsmasq -C dnsmasq.conf')
@@ -50,7 +53,11 @@ except OSError:
 
 close=input("for close fake ap . press 1 \n")
 if close=="1":
-    os.system('service NetworkManager start')
+    pass
+    if sys.argv[1] == "1":
+    	os.system('service NetworkManager start')
+    if sys.argv[1] == "2":
+    	os.system('service network-manager start')
     os.system('service hostapd stop')
     os.system('service apache2 stop')
     os.system('service dnsmasq stop')

@@ -3,7 +3,9 @@
 all: 
 	git pull
 	git add -A
-	git commit -m "commitfrom kali"
+	echo Pls enter your commit
+	read varname
+	git commit -m $varname
 	git push -u origin master
 
 clean:
