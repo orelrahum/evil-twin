@@ -9,7 +9,7 @@ os.system('service NetworkManager stop')
 
 ifconfig="ifconfig "+sys.argv[1]+" 10.0.0.1 netmask 255.255.255.0"
 
-os.system('airmon-ng check')
+#os.system('airmon-ng check')
 # code that replace airmon-ng
 os.system(' pkill -9 hostapd')
 os.system(' pkill -9 dnsmasq')
