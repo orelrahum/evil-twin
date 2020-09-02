@@ -33,10 +33,10 @@ def run_fake_ap():
 	os.system('dnsmasq -C dnsmasq.conf')
 	os.system('service apache2 start')
 	os.system('route add default gw 10.0.0.1')
-	os.system('hostapd hostapd.conf')
+	os.system('hostapd hostapd.conf -B')
 	os.system('service apache2 start')
 	os.system('route add default gw 10.0.0.1')
-	time.sleep(2)
+
 
 
 def route_add():
@@ -75,6 +75,7 @@ if __name__ == "__main__":
 	t2.start()
 	t1.join()
 	t2.join()
+	check=input("pls click enter to close")
 	remove_temp_files()
 	close_fake_ap()
 
