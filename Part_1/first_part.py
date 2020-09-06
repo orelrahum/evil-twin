@@ -81,11 +81,14 @@ def ap_scan_rap():
 def ap_scan():
     global search_timeout
     search_timeout = int(input(G + "Please enter the scanning time frame in seconds: "))
+    global start_scan
+    start_scan = datetime.now()
     channel_changer = Thread(target = change_channel)
     channel_changer.daemon = True
     channel_changer.start()
     print("\n Scanning for networks...\n")
     sniff(iface = interface, prn = ap_scan_pkt, timeout=search_timeout)
+    channel_changer.join()
     num_of_ap = len(ap_list)
     if num_of_ap > 0: 
         # If at least 1 AP was found. 
@@ -95,13 +98,13 @@ def ap_scan():
         print("\n************* FINISH SCANNING *************\n")
         ap_index = int(input("Please enter the number of the AP you want to attack: "))
         print("You choose the AP: [" + str(ap_index) + "] - BSSID: " + ap_list[ap_index][BSSID] + " Channel:" + str(ap_list[ap_index][CHANNEL]) + " AP name: " + ap_list[ap_index][ESSID])
-        set_channel(int(ap_list[ap_index][CHANNEL]))
         global ap_mac
         global ap_name
         global ap_channel
         ap_mac = ap_list[ap_index][BSSID]
         ap_name = ap_list[ap_index][ESSID]
         ap_channel = ap_list[ap_index][CHANNEL]
+        set_channel(int(ap_channel))
         # client_scan_rap()
     else: 
         # If no AP was found. 
@@ -117,8 +120,11 @@ def ap_scan():
 ### (In reality it may be 13 or even less that are used around the world) 
 def change_channel():
     channel_switch = 1
-    while True:
-        os.system('iwconfig %s channel %d' % (interface, channel_switch))
+    current_time = datetime.now()
+    while (current_time-start_scan).seconds < search_timeout:
+        current_time = datetime.now()
+        #os.system('iwconfig %s channel %d' % (interface, channel_switch))
+        set_channel(channel_switch)
         # switch channel in range [1,14] each 0.5 seconds
         channel_switch = channel_switch % 14 + 1
         time.sleep(0.5)
@@ -166,11 +172,13 @@ def client_scan_rap():
 ### We present to the user all the clients that were found, and he choose which client he want to attack. 
 def client_scan():
     s_timeout = search_timeout * 2
-    print(G + "\nScanning for clients that connected to: " + ap_name + " ...")
+    start_scan = datetime.now()
     channel_changer = Thread(target=change_channel)
     channel_changer.daemon = True
     channel_changer.start()
+    print(G + "\nScanning for clients that connected to: " + ap_name + " ...")
     sniff(iface=interface, prn=client_scan_pkt, timeout=s_timeout)
+    channel_changer.join()
     num_of_client = len(client_list)
     if num_of_client > 0: 
         # If at least 1 client was found. 
@@ -206,7 +214,8 @@ def client_scan_pkt(pkt):
         if pkt.addr1 not in client_list:
             if pkt.addr2 != pkt.addr1 and pkt.addr1 != pkt.addr3:
                 client_list.append(pkt.addr1)
-                print("Client with MAC address :" + pkt.addr1 + " was found.")
+                # print("Client with MAC address :" + pkt.addr1 + " was found.")
+                # pkt.sprintf("{IP:%IP.src%}{IPv6:%IPv6.src%}"),
 
 
 
