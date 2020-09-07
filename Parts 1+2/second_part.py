@@ -40,6 +40,7 @@ if __name__ == "__main__":
 	# ssid=input("Please enter the SSID name \n")
 	reset_setting()
 	essid = sys.argv[1]
+	essid = essid + "_1"
 	line="python3 fake_ap.py " + interface + " " + essid
 	os.system(line)
 

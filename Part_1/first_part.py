@@ -38,6 +38,8 @@ T  = '\033[93m' # tan
 ### In order to do so, we need to switched this interface to 'monitor mode'. 
 def monitor_mode():
     global interface
+    global monitor 
+    monitor = 0
     print(G + "*** Step 1:  Choosing an interface to put in 'monitor mode'. *** \n")
     empty = input ("Press Enter to continue.........\n")
     print(W)
@@ -47,6 +49,7 @@ def monitor_mode():
     os.system('ifconfig ' + interface + ' down')
     os.system('iwconfig ' + interface + ' mode monitor')
     os.system('ifconfig ' + interface + ' up')
+    monitor = 1
     # os.system('iwconfig') #check
 
 
@@ -58,6 +61,7 @@ def managed_mode():
     os.system('ifconfig ' + interface + ' down')
     os.system('iwconfig ' + interface + ' mode managed')
     os.system('ifconfig ' + interface + ' up')
+    monitor = 0
     print(B + "[**] - The interface: " + interface + ", is now in Managed Mode. \nYou can check it here : \n")
     os.system('iwconfig')
 
@@ -117,7 +121,8 @@ def ap_scan():
 ### (In reality it may be 13 or even less that are used around the world) 
 def change_channel():
     channel_switch = 1
-    while True:
+    # while True:
+    while monitor == 1:
         os.system('iwconfig %s channel %d' % (interface, channel_switch))
         # switch channel in range [1,14] each 0.5 seconds
         channel_switch = channel_switch % 14 + 1
