@@ -16,5 +16,12 @@ sudo apt install apache2
 mv /var/www/html var/www/html_old
 
 #copy html folder from our code
+to /var/www
+
+#isntall python3, pip3 , scapy
+python3 --version #check python3
+sudo apt install python3-pip #install pip3
+pip3 --version #check python3 version
+
 
 
