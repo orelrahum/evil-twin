@@ -24,4 +24,7 @@ sudo apt install python3-pip #install pip3
 pip3 --version #check python3 version
 
 
+sudo apt-get install gnome-terminal #open more terminal 
+pip3 install --pre scapy[complete] #install scapy
+
 
