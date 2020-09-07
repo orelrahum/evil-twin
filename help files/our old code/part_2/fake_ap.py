@@ -33,7 +33,7 @@ def run_fake_ap():
 	os.system('dnsmasq -C dnsmasq.conf')
 	os.system('service apache2 start')
 	os.system('route add default gw 10.0.0.1')
-	os.system('hostapd hostapd.conf -B')
+	os.system('hostapd hostapd.conf')
 	os.system('service apache2 start')
 	os.system('route add default gw 10.0.0.1')
 
