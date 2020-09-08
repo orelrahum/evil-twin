@@ -65,5 +65,6 @@ if __name__ == "__main__":
 	print(G + "*** Step 2: now we sniffing all packets in your internet. *** \n")
 	print(G + "*** if we will see deauthattack it will be alarted *** \n")
 	print(W)
-	sniff(iface="wlan0", prn = PacketHandler , stop_filter=stopfilter)
+	sniff(iface=interface, prn = PacketHandler , stop_filter=stopfilter)
 	print("warning you'r AP is under deauthattack!!!!!!!!!!")
+	managed_mode()
