@@ -52,7 +52,7 @@ def monitor_mode():
 
 ### After we finish our attack, we want to switch back the interface to 'managed mode'. 
 def managed_mode():
-    print(G + "\n*** Step 5: Reset the interface mode. *** \n")
+    print(G + "\n*** Step 5: Put the interface back in managed mode. *** \n")
     empty = input ("Press Enter in order to put " + interface + " in 'managed mode' .........\n")
     print(W)
     os.system('ifconfig ' + interface + ' down')
@@ -252,7 +252,7 @@ if __name__ == "__main__":
     ### Step 5: Put the interface back in managed mode  
     managed_mode()
     
-    ##### Part 2: Set up & upload fake AP.
+    ### Part 2: Set up & upload fake AP.
     print(W)
     # os.system('python3 second_part.py ' + ap_name) 
     # os.system('gnome-terminal -- sh -c "python3 k1.py "' + z )
