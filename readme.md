@@ -3,7 +3,7 @@
  
 * our code work on Unix OS,
 * please make sure you have 2 wifi adapter
-* before you start please make sure you make all install:
+* 1. before you start please make sure you make all install:
 1. git clone https://github.com/orelrahum/evil-twin    //get from github our project
 2. sudo apt-get update  
 3. sudo apt-get upgrade
