@@ -30,7 +30,7 @@
 
 ### how too run attack code 
   1. connect to defence folder
-  2.run python3 defence.py
+  2. run python3 defence.py
   3. have fun
 
 
