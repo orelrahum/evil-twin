@@ -14,6 +14,11 @@ before you start please make sure you make all install:
 9. sudo apt-get install hostapd //install hostapd
 10.sudo apt-get install dnsmasq //install dnsmasq
 
+### how too run attack code
+
+
+
+### how too run attack code
 
 
 
