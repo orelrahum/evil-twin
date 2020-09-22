@@ -17,10 +17,10 @@
 
 ### how to run attack code
 * if you want to run full attack (deauth and make fake ap)
- 1. connect to attack folder
- 2. run python3 wifi_attack.py
- 3. follow after the instructions
- 4. have fun
+  1. connect to attack folder
+  2. run python3 wifi_attack.py
+  3. follow after the instructions
+  4. have fun
 
 
 
