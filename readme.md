@@ -1,5 +1,5 @@
 # Evil-twin
-##attack and defencive
+## attack and defencive
  
 our code work on Unix OS,
 before you start please make sure you make all install:
