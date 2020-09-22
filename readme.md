@@ -28,7 +28,7 @@
   3. follow after the instructions
   4. have fun
 
-### how too run attack code 
+### how to run attack code 
   1. connect to defence folder
   2. run python3 defence.py
   3. have fun
