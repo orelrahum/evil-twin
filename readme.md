@@ -1,8 +1,9 @@
 # Evil-twin
 ## attack and defencive
  
-our code work on Unix OS,
-before you start please make sure you make all install:
+*our code work on Unix OS,
+*please make sure you have 2 wifi adapter
+*before you start please make sure you make all install:
 1. git clone https://github.com/orelrahum/evil-twin    //get from github our project
 2. sudo apt-get update  
 3. sudo apt-get upgrade
@@ -14,8 +15,11 @@ before you start please make sure you make all install:
 9. sudo apt-get install hostapd //install hostapd
 10.sudo apt-get install dnsmasq //install dnsmasq
 
-### how too run attack code
-
+### how to run attack code
+* if you want to run full attack (deauth and make fake ap)
+1. connect to attack folder
+2. run python3 wifi_attack.py
+3. have fun :)
 
 
 ### how too run attack code
