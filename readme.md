@@ -33,8 +33,8 @@
 ![fake_ap](https://github.com/orelrahum/evil-twin/blob/master/picture/fake_ap.JPG?raw=true)
 
 ### how to run defence code 
-  1. connect to defence folder
-  2. run python3 defence.py
-  3. have fun
+   1. connect to defence folder
+   2. run python3 defence.py
+   3. have fun
    ![defence](https://github.com/orelrahum/evil-twin/blob/master/picture/defence.JPG?raw=true)
 
