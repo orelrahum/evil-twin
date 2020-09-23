@@ -22,6 +22,8 @@
   3. follow after the instructions
   4. have fun
   
+  [wifi_attack](https://github.com/orelrahum/evil-twin/blob/master/picture/wifi_attack.JPG?raw=true)
+  
 * if you want to run fake access point code only
   1. connect to attack folder
   2.run python3 fake_ap.py + *your_fake_ap_name*
