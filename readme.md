@@ -22,7 +22,7 @@
   3. follow after the instructions
   4. have fun
   
-  [wifi_attack](https://github.com/orelrahum/evil-twin/blob/master/picture/wifi_attack.JPG?raw=true)
+  [ wifi_attack ](https://github.com/orelrahum/evil-twin/blob/master/picture/wifi_attack.JPG?raw=true)
   
 * if you want to run fake access point code only
   1. connect to attack folder
@@ -30,9 +30,9 @@
   3. follow after the instructions
   4. have fun
 
-### how to run attack code 
+### how to run defence code 
   1. connect to defence folder
   2. run python3 defence.py
   3. have fun
-
+  [defence](https://github.com/orelrahum/evil-twin/blob/master/picture/defence.JPG?raw=true)
 
