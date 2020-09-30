@@ -36,7 +36,7 @@
   - **Step 4: Disconnect the connection between the AP from the client**  
     In this part we want to disconnect between the choosen AP and client, we will to it by sending deathentication packets from to choosen AP to the choosen client and vice versa  
     We will do that by running 'deauth.py', this file will run in the backgroung as long as the attack is appening
-  - **Step 5: Put the interface back in managed mode**  
+  - **Step 5: Put the interface back in 'managed mode'**  
     After the attack is done we need to switched back the network interface to 'managed mode'
   
 * **deauth.py**
