@@ -5,7 +5,7 @@
 * Hardware requirements:
   - 2 network interface, such that at least one of them has the ability to be in 'monitor mode'  
     Notice that it is most likely that the internal network interface in your computer doen't have the ability to be switched to 'monitor mode', so you will need at least 1 external network interface
-  - Change the 'html' folder in the path "/var/www/html" to the 'html' folder from our github
+  - Change the 'html' folder in the path ```/var/www/html``` to the ```html``` folder from our github
   - Give full premission to 'passwords.txt' file. You can do it by typing this command in the terminal - sudo chmod +rwx passwords.txt 
     - You can check the 'index.php' and 'passwords.txt' files, after you installed apache2, by doing the following:  
       1. Start the apache server - 'sudo service apache2 start'  
