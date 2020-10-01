@@ -34,7 +34,7 @@ def monitor_mode():
 
 ### After we finish our attack, we want to switch back the interface to 'managed mode'. 
 def managed_mode():
-    print(G + "\n*** Step 3: Put the interface back in managed mode. *** \n")
+    print(G + "\n*** Step 3: Put the interface back in 'managed mode'. *** \n")
     empty = input ("Press Enter in order to put " + interface + " in 'managed mode' .........\n")
     print(W)
     os.system('ifconfig ' + interface + ' down')
@@ -96,7 +96,7 @@ if __name__ == "__main__":
 	### Step 2: Sniffing the packets and checking for deauthentication attack.
 	deathentication_check()	
 	
-	###Step 3: Put the interface back in managed mode.
+	###Step 3: Put the interface back in 'managed mode'.
 	managed_mode()
 	
 	
