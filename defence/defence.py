@@ -48,15 +48,16 @@ def managed_mode():
 ############## Deauthentication ##############
 ##############################################
 
-### In this function we sniff all the packets, and if we recognize that 30 packets of deauthentication has been sniffed we will alert that there is attempt to do deathentication attack
+### In this function we sniff all the packets, and if we recognize that 30 packets of deauthentication has been sniffed we will alert that there is attempt to do deathentication attack in your network's area
 def deathentication_check()
 	print(G + "*** Step 2: Sniffing the packets and checking for deauthentication attack. *** \n")
-	print(G + "In case that will be sniffed 30 deauthentication packets, you will alerted that there is attempt to do deathentication attack in your network. \n")
+	print(G + "In case that will be sniffed 30 deauthentication packets, you will alerted that there is attempt to do deathentication attack in your network's area. \n")
 	empty = input ("Press Enter to continue.........\n")
 	print(W)
 	sniff(iface=interface, prn = packet_handler , stop_filter=stopfilter)
 	# sniff(iface="wlxc83a35c2e0b7", prn = PacketHandler , stop_filter=stopfilter)
-	print("WARNNING! Your network may be under deauthentication attack!")
+	print(R + "WARNNING!! There is deathentication attack in your area. \n It is possible that your network is under deauthentication attack!")
+	print(W)
 
 
 ### sniff(..., prn = scan_netwroks, ...) 
