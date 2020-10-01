@@ -65,7 +65,7 @@
 #### Part 2
 * **fake_ap.py**  
   - **Step 1:  Choosing an interface that will be used for the fake AP**  
-    Here you need to choose the network interface that will be used as the fake AP
+    Here you need to choose the network interface that will be used as the fake AP  
     Notice that this network interface needs to be in 'managed mode', and that you cannot choose the same network interface as you choose at the beginning (it is still sending the de-authentication packets in the background)
   - **Step 2:  Activation of the fake AP**  
     Here  we will start running the fake AP. We will create the configuration files using 'create_conf_files.py'  
