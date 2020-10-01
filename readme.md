@@ -84,9 +84,6 @@
 
 In this part there are 2 options to run the code, either run a full attack or just the fake AP
 
-scanning, choosing AP and client, attack them, and make the fake AP
-
-
 #### Option 1 - Full attack
   - Scanning the network for possible APs to attack
   - Choosing AP and client that is connected to the AP
