@@ -68,7 +68,7 @@
     Here you need to choose the network interface that will be used as the fake AP  
     Notice that this network interface needs to be in 'managed mode', and that you cannot choose the same network interface as you choose at the beginning (it is still sending the de-authentication packets in the background)
   - **Step 2:  Activation of the fake AP**  
-    Here  we will start running the fake AP. We will create the configuration files using 'create_conf_files.py'  
+    Here  we will start running the fake AP. We will create the configuration files using ```create_conf_files.py```  
     After the fake AP will start running, the attacked client will be able to connect to it. When succeed and try to access the internet, it will be able to see only the ```index.php``` that in the ```html``` folder. After the client will enter the password, you will be able to see it in the ```passwords.txt``` file. If you want to check this password, you can try logging with it to the AP you choose at the previous part
     Notice that the IP of the fake AP will be - ```10.0.0.1```
   - **Step 3:  Deactivation of the fake AP**  
