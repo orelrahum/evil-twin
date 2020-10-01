@@ -136,6 +136,7 @@ In order to run the fake AP, do as following:
 In order to run the defence, do as following:
    1. Go to ```evil-twin/defence``` folder
    2. Run the command ```$ python3 defence.py``` as root (see picture below)
-   3. And most importantly, HAVE FUN :) 
+   3. Follow the instructions as in the code
+   4. And most importantly, HAVE FUN :) 
    
    ![defence](https://github.com/orelrahum/evil-twin/blob/master/picture/defence.JPG?raw=true)
