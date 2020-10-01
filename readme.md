@@ -59,7 +59,7 @@
     Once attack done, we need to switch back the network interface to 'managed mode'
   
 * **deauth.py**  
-  Here we will send the de-authentication packets from to chosen AP to the chosen client and vice versa, it will cause them to disconnect from each other  
+  - Here we will send the de-authentication packets from to chosen AP to the chosen client and vice versa, it will cause them to disconnect from each other  
   Notice that when this file is start running, it will run in the same terminal as the ```wifi_attack.py```. A new terminal, that will run 'fake_ap.py', will be opened in order to continue the attack.
 
 #### Part 2
