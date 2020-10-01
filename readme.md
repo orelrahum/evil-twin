@@ -88,7 +88,7 @@ In this part there are 2 options to run the code, either run a full attack or ju
 #### Option 1 - Full attack
   - Scanning the network for possible APs to attack
   - Choosing AP and client that is connected to the AP
-  - Attack them, that is disconnect them from each other
+  - Attack them. That is, disconnect them from each other
   - Run the fake AP  
   
   In this option the name of the fake AP will be as the name of the choosen AP
