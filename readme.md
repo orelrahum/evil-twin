@@ -83,9 +83,9 @@
 
 ### How to run the code
 
-In this part there are 2 options to run the code, either run a full attack or just the fake AP
+In this part there are 2 options to run the code, either run a full attack (Part 1 + Part 2) or just the fake AP (Part 2)
 
-#### Option 1 - Full attack
+#### Option 1 - Full attack (Part 1 + Part 2)
   - Scanning the network for possible APs to attack
   - Choosing AP and client that is connected to the AP
   - Attack them. That is, disconnect them from each other
@@ -101,7 +101,7 @@ In this part there are 2 options to run the code, either run a full attack or ju
   
   ![wifi_attack](https://github.com/orelrahum/evil-twin/blob/master/picture/wifi_attack.JPG?raw=true)
 
-#### Option 2 - Fake AP
+#### Option 2 - Fake AP (Part 2)
 - Just run the fake AP  
 
 In this option you need to choose the name of the fake AP
