@@ -72,11 +72,13 @@
   - **Step 3:  Deactivation of the fake AP**  
     After checking that the password the client entered is correct, we can turn off the fake AP. We will delete all the configuration files we created, and reset the setting to what was before the attack.
 
-* **create_conf_files.py**
-  
+* **create_conf_files.py**  
+  - Here we create the hostapd and dnsmasq configuration files. 
 
-* **factory_setting.py**
+* **factory_setting.py**  
+  - Delete all the configuration files we created, and reset the setting to what was before the attack 
 
+### How to run the code
 
 In this part there are 2 options, either run the code or run the machine
 * if you want to run full attack (de-auth and make fake ap):
