@@ -10,7 +10,7 @@
   ```$ sudo chmod +rwx passwords.txt``` 
     - You can check the ```index.php``` and ```passwords.txt``` files, after you installed apache2, by doing the following:  
       1. Start the apache server: ```$ sudo service apache2 start```  
-      2. Go to your browser and type in the URL ```http://127.0.0.1```, you should see the ```index.php```
+      2. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the ```index.php```
       3. In the text box enter the password, you can enter a random sequence of letters and numbers just for the test
       4. Go to ```passwords.txt``` file and you should see the sequence that you entered
 * Requirements:
