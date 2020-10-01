@@ -52,7 +52,7 @@ def monitor_mode():
 
 ### After we finish our attack, we want to switch back the interface to 'managed mode'. 
 def managed_mode():
-    print(G + "\n*** Step 5: Put the interface back in managed mode. *** \n")
+    print(G + "\n*** Step 5: Put the interface back in 'managed mode'. *** \n")
     empty = input ("Press Enter in order to put " + interface + " in 'managed mode' .........")
     print(W)
     os.system('ifconfig ' + interface + ' down')
