@@ -5,7 +5,7 @@
 * Hardware requirements:
   - 2 network interface, such that at least one of them has the ability to be in 'monitor mode'  
     Notice that it is most likely that the internal network interface in your computer doen't have the ability to be switched to 'monitor mode', so you will need at least 1 external network interface
-  - Change the ```html``` folder in the path ```/var/www/html``` to the ```html``` folder from our github
+  - In your computer, change the ```html``` folder in the path ```/var/www/html``` to the [html](https://github.com/orelrahum/evil-twin/tree/master/html) folder from our github
   - Give full premission to ```passwords.txt``` file. You can do it by running the following command:   
   ```$ sudo chmod +rwx passwords.txt``` 
     - You can check the ```index.php``` and ```passwords.txt``` files, after you installed apache2, by doing the following:  
@@ -52,15 +52,15 @@
   - **Step 2: Scanning the network for AP to attack**  
     Here you will see all the APs that were found in the network scan, and you need to choose the AP you want to attack. If no AP was found, you can choose either to rescan the network or to quit.
   - **Step 3: Verifying that at least 1 client connected to the AP you choose**  
-    In order to attack the chosen AP we need to verify that there is at least 1 client connected to it. If no client found, you can choose either to rescan for clients or to quit.
+    In order to attack the chosen AP we need to verify that there is at least 1 client connected to it. If no client found, you can choose either to rescan for clients or to quit  
   - **Step 4: Disconnect the connection between the AP from the client**  
-    Here we want to disconnect between the chosen AP and client. We will do that by running ```deauth.py```, this file will run in the background as long as the attack is running.
+    Here we want to disconnect between the chosen AP and client. We will do that by running [deauth.py](https://github.com/orelrahum/evil-twin/blob/master/attack/deauth.py), this file will run in the background as long as the attack is running
   - **Step 5: Put the interface back in 'managed mode'**  
     Once attack done, we need to switch back the network interface to 'managed mode'
   
 * **deauth.py**  
   - Here we will send the de-authentication packets from to chosen AP to the chosen client and vice versa, it will cause them to disconnect from each other  
-  Notice that when this file is start running, it will run in the same terminal as the ```wifi_attack.py```. A new terminal, that will run ```fake_ap.py```, will be opened in order to continue the attack.
+  Notice that when this file is start running, it will run in the same terminal as the ```wifi_attack.py```. A new terminal, that will run [fake_ap.py](https://github.com/orelrahum/evil-twin/blob/master/attack/fake_ap.py), will be opened in order to continue the attack  
 
 #### Part 2
 * **fake_ap.py**  
@@ -68,15 +68,15 @@
     Here you need to choose the network interface that will be used as the fake AP  
     Notice that this network interface needs to be in 'managed mode', and that you cannot choose the same network interface as you choose at the beginning (it is still sending the de-authentication packets in the background)
   - **Step 2:  Activation of the fake AP**  
-    Here  we will start running the fake AP. We will create the configuration files using ```create_conf_files.py```  
+    Here  we will start running the fake AP. We will create the configuration files using [create_conf_files.py](https://github.com/orelrahum/evil-twin/blob/master/attack/create_conf_files.py)    
     After the fake AP will start running, the attacked client will be able to connect to it. After the client will connect to the fake AP and will try to access the internet, it will be able to see only the ```index.php``` that in the ```html``` folder. After the client will enter the password, you will be able to see it in the ```passwords.txt``` file  
     If you want to check this password, you can try logging with it to the AP you choose at the previous part
     Notice that the IP of the fake AP will be - ```10.0.0.1```
   - **Step 3:  Deactivation of the fake AP**  
-    After checking that the password the client entered is correct, we can turn off the fake AP. We will delete all the configuration files we created, and reset the setting to what was before the attack.
+    After checking that the password the client entered is correct, we can turn off the fake AP. We will delete all the configuration files we created, and reset the setting to what was before the attack  
 
 * **create_conf_files.py**  
-  - Here we create the hostapd and dnsmasq configuration files. 
+  - Here we create the hostapd and dnsmasq configuration files  
 
 * **factory_setting.py**  
   - Delete all the configuration files we created, and reset the setting to what was before the attack 
