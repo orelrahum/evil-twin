@@ -56,7 +56,7 @@ def deathentication_check()
 	print(W)
 	sniff(iface=interface, prn = packet_handler , stop_filter=stopfilter)
 	# sniff(iface="wlxc83a35c2e0b7", prn = PacketHandler , stop_filter=stopfilter)
-	print("warning you'r AP is under deauthattack!!!!!!!!!!")
+	print("WARNNING! Your network may be under deauthentication attack!")
 
 
 ### sniff(..., prn = scan_netwroks, ...) 
