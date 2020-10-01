@@ -50,7 +50,7 @@
     Here you need to choose the network interface that will scan the network for possible APs (Access Points) to attack, and after that will send the de-authentication packets  
     Notice that you need to choose the network interface that can be switched to 'monitor mode'
   - **Step 2: Scanning the network for AP to attack**  
-    Here you will see all the APs that were found in the network scan, and you need to choose the AP you want to attack. If no AP was found, you can choose either to rescan the network or to quit.
+    Here you will see all the APs that were found in the network scan, and you need to choose the AP you want to attack. If no AP was found, you can choose either to rescan the network or to quit  
   - **Step 3: Verifying that at least 1 client connected to the AP you choose**  
     In order to attack the chosen AP we need to verify that there is at least 1 client connected to it. If no client found, you can choose either to rescan for clients or to quit  
   - **Step 4: Disconnect the connection between the AP from the client**  
