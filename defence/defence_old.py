@@ -34,7 +34,7 @@ def monitor_mode():
 
 ### After we finish our attack, we want to switch back the interface to 'managed mode'. 
 def managed_mode():
-    print(G + "\n*** Step 3: Put the interface back in 'managed mode'. *** \n")
+    print(G + "\n*** Step 3: Put the interface back in managed mode. *** \n")
     empty = input ("Press Enter in order to put " + interface + " in 'managed mode' .........\n")
     print(W)
     os.system('ifconfig ' + interface + ' down')
@@ -48,16 +48,15 @@ def managed_mode():
 ############## Deauthentication ##############
 ##############################################
 
-### In this function we sniff all the packets, and if we recognize that 30 packets of deauthentication has been sniffed we will alert that there is attempt to do deathentication attack in your network's area
+### In this function we sniff all the packets, and if we recognize that 30 packets of deauthentication has been sniffed we will alert that there is attempt to do deathentication attack
 def deathentication_check():
 	print(G + "*** Step 2: Sniffing the packets and checking for deauthentication attack. *** \n")
-	print(G + "In case that will be sniffed 30 deauthentication packets, you will alerted that there is attempt to do deathentication attack in your network's area. \n")
+	print(G + "In case that will be sniffed 30 deauthentication packets, you will alerted that there is attempt to do deathentication attack in your network. \n")
 	empty = input ("Press Enter to continue.........\n")
-	print("Sniffing packets...")
 	print(W)
 	sniff(iface=interface, prn = packet_handler , stop_filter=stopfilter)
 	# sniff(iface="wlxc83a35c2e0b7", prn = PacketHandler , stop_filter=stopfilter)
-	print(W)
+	print("warning you'r AP is under deauthattack!!!!!!!!!!")
 
 
 ### sniff(..., prn = scan_netwroks, ...) 
@@ -77,7 +76,6 @@ def packet_handler(pkt):
 def stopfilter(x):
 	if count==30:
 		return True
-		print(R + "WARNNING!! There is deathentication attack in your area. \n It is possible that your network is under deauthentication attack!")
 	else:
 		return False
 
@@ -88,8 +86,8 @@ if __name__ == "__main__":
 	if os.geteuid():
 		sys.exit(R + '[**] Please run as root')
     
-	print("********************************************************************** \n")
-	print("************ Part 3: defence from deauthentication attack ************ \n")
+	print( B + "********************************************************************** \n")
+	print("************  defence from deauthentication attack ************ \n")
 	print("********************************************************************** \n")
 	
 	### Step 1:  Choosing an interface to put in 'monitor mode'.
@@ -98,7 +96,7 @@ if __name__ == "__main__":
 	### Step 2: Sniffing the packets and checking for deauthentication attack.
 	deathentication_check()	
 	
-	###Step 3: Put the interface back in 'managed mode'.
+	###Step 3: Put the interface back in managed mode.
 	managed_mode()
 	
 	
