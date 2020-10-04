@@ -3,6 +3,7 @@ import sys
 from scapy.all import *
 from scapy.layers.dot11 import Dot11, Dot11Beacon, Dot11Elt 
 
+# import json
 
 
 
@@ -102,6 +103,17 @@ def ap_scan():
         ap_mac = ap_list[ap_index][BSSID]
         ap_name = ap_list[ap_index][ESSID]
         ap_channel = ap_list[ap_index][CHANNEL]
+        '''
+        data = {}
+        data['AP'] = []
+        data['AP'].append({
+            'name': ap_name,
+            'chnnel': ap_channel,
+            'mac': ap_mac
+            })
+        with open('data.txt', 'w') as outfile:
+            json.dump(data, outfile)
+            '''
         # client_scan_rap()
     else: 
         # If no AP was found. 
