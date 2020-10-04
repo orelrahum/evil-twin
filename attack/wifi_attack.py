@@ -120,6 +120,8 @@ def ap_scan():
         rescan = input("No networks were found. Do you want to rescan? [Y/n] ")
         if rescan == "n":
             print("  Sorry :(  ")
+            managed_mode()
+            sys.exit(0)
         else:
             ap_scan()
 
@@ -205,6 +207,8 @@ def client_scan():
         rescan = input("No clients were found. Do you want to rescan? [Y/n] ")
         if rescan == "n":
             print("  Sorry :(  ")
+            managed_mode()
+            sys.exit(0)
         else:
             client_scan()
   
