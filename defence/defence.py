@@ -75,16 +75,16 @@ def packet_handler(pkt):
 	if pkt.type == 0 and pkt.subtype == 0xC:
 		count=count+1
 		print (O + "Deauthentication packet sniffed. Packet number: " + str(count))
-	if  time.time()-start_time > 10 :
+	if  time.time()-start_time > 20 :
 		count=0		
-		print("All is OK for this interval time , will start new interval")
+		print(W + "All is OK for this interval time , will start new interval")
 		start_time=time.time()
 
 
 def stopfilter(x):
 	if count==30:
-		return True
 		print(R + "WARNNING!! There is deathentication attack in your area. \n It is possible that your network is under deauthentication attack!")
+		return True
 	else:
 		return False
 
