@@ -1,4 +1,4 @@
-# Evil Twin - Attack and Defence
+# Evil Twin - Attack and Defence Tool
 
 <!-- ----------------------------------------------------------------------- -->
 <!-- ------------------ Requirements for running the code ------------------ -->
@@ -169,15 +169,17 @@ In order to run the defence, do as following:
 ## Web Server Part
 ### Files
 * **index2.js**  
-  This file is the web server................
-  - **HTML page**  
+  - This is the web server. 
+  In general, web server contain one or more websites. A web server processes incoming network requests over HTTP and several other related protocols  
+   In our case, the web server contain one website, our HTML page. And processes incoming network requests over HTTP only.
+   - **HTML page**  
   The HTML that we present to the client is - ```generateHTML```
-  - **GET method requests** 
+  - **GET method requests**  
   In general, the GET method requests a representation of the specified resource  
   In our case, when then client requesting for a website (any website) there is GET method request, the server will response with the ```generateHTML``` to any such a request  
   In the server side (attacker side) when there is GET requests, a message will appear informing that the client tried to enter a website  
   <!-- Notice that this work only on HTTP, and not on HTTPS ???????? -->
-  - **POST method requests** 
+  - **POST method requests**  
   In general, the POST request method requests that a web server accepts the data enclosed in the body of the request message, most likely for storing it  
   In our case, when then client enter a password and click the ```Connect``` button there is POST method request, the server will response with the new ```generateHTML``` (now ```title``` has new value) to any such a request  
   In the server side (attacker side) when there is POST requests, a message will appear informing that the client entered a new password, the password will be saved in the file ```passwords.txt```  
@@ -185,7 +187,7 @@ In order to run the defence, do as following:
   
 
 ### How to run the code
-In this part there are 2 options to run the code, either run it and manually check the given password by the client, or run it and automatically check the given password by the client by using [node-wifi](https://www.npmjs.com/package/node-wifi)  
+In this part there are 2 options to run the code, either run it and manually check the given password by the client, or run it and automatically check the given password given by the client by using [node-wifi](https://www.npmjs.com/package/node-wifi)  
 Notice that you can run this file separately to test that it works. If you run it without running the ```fake_ap.py```, no client will be able to access it  
 If you run ```fake_ap.py```, it will automatically open a new terminal window and run the web server in it  
 
@@ -199,7 +201,7 @@ In order to run and test the web server, do as following:
    6. If you want to check the password, you can do it manually from another device
    7. And most importantly, HAVE FUN :) 
 
-#### Option 2 - A utomatically check the password
+#### Option 2 - Automatically check the password
 In order automatically check the password you will need an extra network interface in 'managed mode'  
 To run and test the web server, do as following:
    1. Go to ```evil-twin/attack/html``` folder
