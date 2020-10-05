@@ -97,7 +97,7 @@
     Here  we will start running the fake AP. First, we will create the configuration files using [```create_conf_files.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/create_conf_files.py). Second, we activate the fake AP  
     After the fake AP will start running, the attacked client will be able to connect to it. After the client conected  
     Notice that the IP of the fake AP will be - ```10.0.0.1```
-    ![fake AP - client side](https://github.com/orelrahum/evil-twin/blob/master/pictures2/7%20-%20fake_AP-client_side.jpg)  
+    ![fake AP - client side](https://github.com/orelrahum/evil-twin/blob/master/pictures2/7%20-%20fake_AP-client_side.jpg)   
     When the fake AP start running a new terminal, that will run [```index2.js```](https://github.com/orelrahum/evil-twin/blob/master/attack/html/index2.js), will be opened in order to run the web server. More information about the web server will be explained [below](#web-server-part)   
     ![fake AP + web server](https://github.com/orelrahum/evil-twin/blob/master/pictures2/6%20-%20fake_ap%2Bweb_server.png)  
   - **Step 3:  Deactivation of the fake AP**  
