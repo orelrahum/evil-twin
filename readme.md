@@ -148,14 +148,16 @@ In order to run the fake AP, do as following:
 ## Defence Part
 ### Files
 #### Part 3
-* [**defence.py**](https://github.com/orelrahum/evil-twin/blob/master/defence/defence.py)
+* [**defence.py**](https://github.com/orelrahum/evil-twin/blob/master/defence/defence%2BSSID.py)
   - **Step 1: Choosing an interface to put in 'monitor mode'**  
   Here you need to choose the network interface that will scan for deauthentication packets in your area  
-  Notice that you need to choose the network interface that can be switched to 'monitor mode'. You may choose the same network interface as you choose at the beginning
-  - **Step 2: Sniffing the packets and checking for deauthentication attack**   
-  Here we sniff the network's area for deauthentication packets. When we manage to capture 30 deauthentication packets, an alert message will appear  
-  Notice that if you want to change the number of packets to capture, you can do it by changing  the number in ```if count==30``` in the function ```stopfilter(x)```
-  - **Step 3: Put the interface back in 'managed mode'**   
+  Notice that you need to choose the network interface that can be switched to 'monitor mode'. You may choose the same network interface as you choose at the beginning  
+  - **Step 2: Scanning the network for the AP to defence**  
+    Here you will see all the APs that were found in the network scan, and you need to choose the AP you want to defence. If no AP was found, you can choose either to rescan the network or to quit   
+  - **Step 3: Sniffing the packets and checking for deauthentication attack**   
+  Here we sniff for deauthentication packets that the choosen AP is the source/destination. When we manage to capture 30 deauthentication packets, an alert message will appear. Moreover, we will try capture packets in interval of 60 seconds. In each interval, if we didn't capture 30 packets, we reset the count and start new interval  
+  Notice that if you want to change the number of packets to capture, you can do it by changing  the number in ```if count==30``` in the function ```stopfilter(x)```. Also, if you want to change the time of each interval, you can do it by changing the number in ```if  time.time()-start_time > 60``` in the function ```packet_handler(pkt)```   
+  - **Step 4: Put the interface back in 'managed mode'**   
   If any alert message has appeared or you want to stop the scanning for deauthentication packets, we need to switch back the network interface to 'managed mode'
 
 
