@@ -82,7 +82,7 @@
   
 * [**deauth.py**](https://github.com/orelrahum/evil-twin/blob/master/attack/deauth.py)
   - Here we will send the de-authentication packets from to chosen AP to the chosen client and vice versa, it will cause them to disconnect from each other  
-  Notice that when this file is start running, it will run in the same terminal as the ```wifi_attack.py```. A new terminal, that will run [```fake_ap.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/fake_ap.py), will be opened in order to continue the attack  
+  Notice that when this file is start running, it will run in the same terminal as the [```wifi_attack.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/wifi_attack.py). A new terminal, that will run [```fake_ap.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/fake_ap.py), will be opened in order to continue the attack  
 
 #### Part 2
 * [**fake_ap.py**](https://github.com/orelrahum/evil-twin/blob/master/attack/fake_ap.py)  
@@ -90,9 +90,9 @@
     Here you need to choose the network interface that will be used as the fake AP  
     Notice that this network interface needs to be in 'managed mode', and that you cannot choose the same network interface as you choose at the beginning (it is still sending the de-authentication packets in the background)
   - **Step 2:  Activation of the fake AP**  
-    Here  we will start running the fake AP. We will create the configuration files using [```create_conf_files.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/create_conf_files.py)    
-    After the fake AP will start running, the attacked client will be able to connect to it. After the client will connect to the fake AP and will try to access the internet, it will be able to see only the ```index.php``` that in the ```html``` folder. After the client will enter the password, you will be able to see it in the ```passwords.txt``` file  
-    If you want to check this password, you can try logging with it to the AP you choose at the previous part
+    Here  we will start running the fake AP. First, we will create the configuration files using [```create_conf_files.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/create_conf_files.py). Second, we activate the fake AP  
+    After the fake AP will start running, the attacked client will be able to connect to it. After the client conected  
+    When the fake AP start running a new terminal, that will run [```index2.js```](https://github.com/orelrahum/evil-twin/blob/master/attack/html/index2.js), will be opened in order to run the web server. More information about the web server will be explained [below](#web-server-part)  
     Notice that the IP of the fake AP will be - ```10.0.0.1```
   - **Step 3:  Deactivation of the fake AP**  
     After checking that the password the client entered is correct, we can turn off the fake AP. We will delete all the configuration files we created, and reset the setting to what was before the attack  
@@ -129,7 +129,7 @@ In this option you need to choose the name of the fake AP
 
 In order to run the fake AP, do as following:
   1. Go to [```evil-twin/attack```](https://github.com/orelrahum/evil-twin/tree/master/attack) folder
-  2. Run the command ```$ python3 fake_ap.py  *<your_fake_ap_name>*``` as root (see picture below)
+  2. Run the command ```$ python3 fake_ap.py <your_fake_ap_name>``` as root (see picture below), such that *```<your_fake_ap_name>```* is the name of the fake AP. 
   3. Follow the instructions as in the code
   4. And most importantly, HAVE FUN :) 
 
@@ -155,7 +155,7 @@ In order to run the fake AP, do as following:
 
 ### How to run the code
 In order to run the defence, do as following:
-   1. Go to ```evil-twin/defence``` folder
+   1. Go to [```evil-twin/defence```](https://github.com/orelrahum/evil-twin/tree/master/defence) folder
    2. Run the command ```$ python3 defence.py``` as root (see picture below)
    3. Follow the instructions as in the code
    4. And most importantly, HAVE FUN :) 
@@ -168,7 +168,7 @@ In order to run the defence, do as following:
 
 ## Web Server Part
 ### Files
-* **index2.js**  
+* [**index2.js**](https://github.com/orelrahum/evil-twin/blob/master/attack/html/index)  
   - This is the web server. 
   In general, web server contain one or more websites. A web server processes incoming network requests over HTTP and several other related protocols  
    In our case, the web server contain one website, our HTML page. And processes incoming network requests over HTTP only.
@@ -193,7 +193,7 @@ If you run ```fake_ap.py```, it will automatically open a new terminal window an
 
 #### Option 1 - Manually check the password
 In order to run and test the web server, do as following:
-   1. Go to ```evil-twin/attack/html``` folder
+   1. Go to [```evil-twin/attack/html```](https://github.com/orelrahum/evil-twin/tree/master/attack/html)` folder
    2. Run the command ```$ node index2.js``` as root
    3. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the html page
    4. In the text box enter the password, you can enter a random sequence of letters and numbers just for the test
@@ -204,7 +204,7 @@ In order to run and test the web server, do as following:
 #### Option 2 - Automatically check the password
 In order automatically check the password you will need an extra network interface in 'managed mode'  
 To run and test the web server, do as following:
-   1. Go to ```evil-twin/attack/html``` folder
+   1. Go to [```evil-twin/attack/html```](https://github.com/orelrahum/evil-twin/tree/master/attack/html)   folder
    2. Now you need to do some changes in the ```index2.js``` file: 
       - Uncomment the line ```const wifi = require('node-wifi'); ```
       - Uncomment the section ```const checkPassword = async (password) => { ... }; ```
@@ -214,10 +214,10 @@ To run and test the web server, do as following:
       - Uncomment the line ```title = ans ? 'Great succeess :)' : 'The password is incorrect. :('; ```
       - Comment the line ```title = "Authenticating...\n If you wait more than 1min. the password is INCORRECT." ```
       - Don't forget to SAVE the file
-   3. Run the command ```$ node index2.js```*```<iface> <ssid>```* as root, such that *```<iface>```* is the extra network interface, and *```<ssid>```* is the name of the AP you want to try to connect to
+   3. Run the command ```$ node index2.js <iface> <ssid>``` as root, such that *```<iface>```* is the extra network interface, and *```<ssid>```* is the name of the AP you want to try to connect to
    4. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the html page
-   5. In the text box enter a password, if you want the test the checking password part you may want to enter the correct password to the ```<ssid>```, and an incorrect password
-   6. A related message, whether the password was correct or incorrect, will appear in the top of the presented HTML 
+   5. In the text box enter a password, if you want the test the checking password part you may want to enter the correct password to the *```<ssid>```*, and an incorrect password
+   6. A related message, whether the password was correct or incorrect, will appear at the top of the presented HTML 
    7. Go to ```passwords.txt``` file and you should see the passwords you entered. You should also see a messages with the passwords in the terminal window
    8. And most importantly, HAVE FUN :) 
 
