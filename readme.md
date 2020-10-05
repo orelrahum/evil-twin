@@ -188,7 +188,8 @@ In order to run the defence, do as following:
 
 ### How to run the code
 In this part there are 2 options to run the code, either run it and manually check the given password by the client, or run it and automatically check the given password given by the client by using [node-wifi](https://www.npmjs.com/package/node-wifi)  
-Notice that you can run this file separately to test that it works. If you run it without running the [```fake_ap.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/fake_ap.py), no client will be able to access it  
+Notice that you can run this file separately to test that it works  
+If you run it without running the [```fake_ap.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/fake_ap.py), no client will be able to access it  
 If you run [```fake_ap.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/fake_ap.py), it will automatically open a new terminal window and run the web server in it  
 
 #### Option 1 - Manually check the password
