@@ -56,10 +56,10 @@ const generateHTML = (title) => `<!DOCTYPE html>
 This part check if the given password is correct.
 # checkPassword - is a Promise
  const checkPassword = async (password) => {
-    //const iface = process.argv[2];
-    //const ssid = process.argv[3];
-    const iface = "wlxc83a35c2e0b7";
-    const ssid = "Linksys00314";
+    const iface = process.argv[2];
+    const ssid = process.argv[3];
+    //const iface = "wlxc83a35c2e0b7";
+    //const ssid = "Linksys00314";
     await wifi.init({ iface });
     try {
         const ans = await wifi.connect({ ssid, password });
