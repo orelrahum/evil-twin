@@ -67,7 +67,7 @@
 
 ### Files
 #### Part 1
-* **wifi_attack.py**
+* [**wifi_attack.py**](https://github.com/orelrahum/evil-twin/blob/master/attack/wifi_attack.py)  
   - **Step 1: Choosing an interface to put in 'monitor mode'**    
     Here you need to choose the network interface that will scan the network for possible APs (Access Points) to attack, and after that will send the de-authentication packets  
     Notice that you need to choose the network interface that can be switched to 'monitor mode'
@@ -76,31 +76,31 @@
   - **Step 3: Verifying that at least 1 client connected to the AP you choose**  
     In order to attack the chosen AP we need to verify that there is at least 1 client connected to it. If no client found, you can choose either to rescan for clients or to quit  
   - **Step 4: Disconnect the connection between the AP from the client**  
-    Here we want to disconnect between the chosen AP and client. We will do that by running [deauth.py](https://github.com/orelrahum/evil-twin/blob/master/attack/deauth.py), this file will run in the background as long as the attack is running
+    Here we want to disconnect between the chosen AP and client. We will do that by running [```deauth.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/deauth.py), this file will run in the background as long as the attack is running
   - **Step 5: Put the interface back in 'managed mode'**  
     Once attack done, we need to switch back the network interface to 'managed mode'
   
-* **deauth.py**  
+* [**deauth.py**](https://github.com/orelrahum/evil-twin/blob/master/attack/deauth.py)
   - Here we will send the de-authentication packets from to chosen AP to the chosen client and vice versa, it will cause them to disconnect from each other  
-  Notice that when this file is start running, it will run in the same terminal as the ```wifi_attack.py```. A new terminal, that will run [fake_ap.py](https://github.com/orelrahum/evil-twin/blob/master/attack/fake_ap.py), will be opened in order to continue the attack  
+  Notice that when this file is start running, it will run in the same terminal as the ```wifi_attack.py```. A new terminal, that will run [```fake_ap.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/fake_ap.py), will be opened in order to continue the attack  
 
 #### Part 2
-* **fake_ap.py**  
+* [**fake_ap.py**](https://github.com/orelrahum/evil-twin/blob/master/attack/fake_ap.py)  
   - **Step 1:  Choosing an interface that will be used for the fake AP**  
     Here you need to choose the network interface that will be used as the fake AP  
     Notice that this network interface needs to be in 'managed mode', and that you cannot choose the same network interface as you choose at the beginning (it is still sending the de-authentication packets in the background)
   - **Step 2:  Activation of the fake AP**  
-    Here  we will start running the fake AP. We will create the configuration files using [create_conf_files.py](https://github.com/orelrahum/evil-twin/blob/master/attack/create_conf_files.py)    
+    Here  we will start running the fake AP. We will create the configuration files using [```create_conf_files.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/create_conf_files.py)    
     After the fake AP will start running, the attacked client will be able to connect to it. After the client will connect to the fake AP and will try to access the internet, it will be able to see only the ```index.php``` that in the ```html``` folder. After the client will enter the password, you will be able to see it in the ```passwords.txt``` file  
     If you want to check this password, you can try logging with it to the AP you choose at the previous part
     Notice that the IP of the fake AP will be - ```10.0.0.1```
   - **Step 3:  Deactivation of the fake AP**  
     After checking that the password the client entered is correct, we can turn off the fake AP. We will delete all the configuration files we created, and reset the setting to what was before the attack  
 
-* **create_conf_files.py**  
+* [**create_conf_files.py**](https://github.com/orelrahum/evil-twin/blob/master/attack/create_conf_files.py)  
   - Here we create the hostapd and dnsmasq configuration files  
 
-* **factory_setting.py**  
+* [**factory_setting.py**](https://github.com/orelrahum/evil-twin/blob/master/attack/factory_setting.py)    
   - Delete all the configuration files we created, and reset the setting to what was before the attack 
 
 ### How to run the code
@@ -115,7 +115,7 @@ In this part there are 2 options to run the code, either run a full attack (Part
   In this option the name of the fake AP will be as the name of the choosen AP
   
   In order to run full attack, do as following:
-  1. Go to ```evil-twin/attack``` folder
+  1. Go to [```evil-twin/attack```](https://github.com/orelrahum/evil-twin/tree/master/attack) folder
   2. Run the command ```$ python3 wifi_attack.py``` as root (see picture below)
   3. Follow the instructions as in the code
   4. And most importantly, HAVE FUN :) 
@@ -128,8 +128,8 @@ In this part there are 2 options to run the code, either run a full attack (Part
 In this option you need to choose the name of the fake AP
 
 In order to run the fake AP, do as following:
-  1. Go to ```evil-twin/attack``` folder
-  2. Run the command ```$ python3 fake_ap.py  <your_fake_ap_name>``` as root (see picture below)
+  1. Go to [```evil-twin/attack```](https://github.com/orelrahum/evil-twin/tree/master/attack) folder
+  2. Run the command ```$ python3 fake_ap.py  *<your_fake_ap_name>*``` as root (see picture below)
   3. Follow the instructions as in the code
   4. And most importantly, HAVE FUN :) 
 
@@ -142,7 +142,7 @@ In order to run the fake AP, do as following:
 ## Defence Part
 ### Files
 #### Part 3
-* **defence.py**
+* [**defence.py**](https://github.com/orelrahum/evil-twin/blob/master/defence/defence.py)
   - **Step 1: Choosing an interface to put in 'monitor mode'**  
   Here you need to choose the network interface that will scan for deauthentication packets in your area  
   Notice that you need to choose the network interface that can be switched to 'monitor mode'. You may choose the same network interface as you choose at the beginning
@@ -214,7 +214,7 @@ To run and test the web server, do as following:
       - Uncomment the line ```title = ans ? 'Great succeess :)' : 'The password is incorrect. :('; ```
       - Comment the line ```title = "Authenticating...\n If you wait more than 1min. the password is INCORRECT." ```
       - Don't forget to SAVE the file
-   3. Run the command ```$ node index2.js <iface> <ssid>``` as root, such that ```<iface>``` is the extra network interface, and ```<ssid>``` is the name of the AP you want to try to connect to
+   3. Run the command ```$ node index2.js```*```<iface> <ssid>```* as root, such that *```<iface>```* is the extra network interface, and *```<ssid>```* is the name of the AP you want to try to connect to
    4. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the html page
    5. In the text box enter a password, if you want the test the checking password part you may want to enter the correct password to the ```<ssid>```, and an incorrect password
    6. A related message, whether the password was correct or incorrect, will appear in the top of the presented HTML 
