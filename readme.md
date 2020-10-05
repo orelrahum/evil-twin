@@ -10,7 +10,7 @@
 * Hardware requirements:
   - 2 network interface, such that at least one of them has the ability to be in 'monitor mode'  
     Notice that it is most likely that the internal network interface in your computer doen't have the ability to be switched to 'monitor mode', so you will need at least 1 external network interface
-   - Give full premission to ```passwords.txt``` file. You can do it by running the following command:   
+   - In your personal computer, give full premission to ```passwords.txt``` file (from ```evil-twin/attack/html``` folder). You can do it by run the following command:   
   ```$ sudo chmod +rwx passwords.txt``` 
   <!-- \\Doesn't need this when using JavaScript
        - In your computer, change the ```html``` folder in the path ```/var/www/html``` to the [html](https://github.com/orelrahum/evil-twin/tree/master/html) folder from our github 
@@ -188,14 +188,14 @@ In order to run the defence, do as following:
 
 ### How to run the code
 In this part there are 2 options to run the code, either run it and manually check the given password by the client, or run it and automatically check the given password given by the client by using [node-wifi](https://www.npmjs.com/package/node-wifi)  
-Notice that you can run this file separately to test that it works. If you run it without running the ```fake_ap.py```, no client will be able to access it  
-If you run ```fake_ap.py```, it will automatically open a new terminal window and run the web server in it  
+Notice that you can run this file separately to test that it works. If you run it without running the [```fake_ap.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/fake_ap.py), no client will be able to access it  
+If you run [```fake_ap.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/fake_ap.py), it will automatically open a new terminal window and run the web server in it  
 
 #### Option 1 - Manually check the password
 In order to run and test the web server, do as following:
    1. Go to [```evil-twin/attack/html```](https://github.com/orelrahum/evil-twin/tree/master/attack/html)` folder
    2. Run the command ```$ node index2.js``` as root
-   3. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the html page
+   3. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the HTML page
    4. In the text box enter the password, you can enter a random sequence of letters and numbers just for the test
    5. Go to ```passwords.txt``` file and you should see the sequence you entered. You should also see a message with the password in the terminal window
    6. If you want to check the password, you can do it manually from another device
@@ -215,7 +215,7 @@ To run and test the web server, do as following:
       - Comment the line ```title = "Authenticating...\n If you wait more than 1min. the password is INCORRECT." ```
       - Don't forget to SAVE the file
    3. Run the command ```$ node index2.js <iface> <ssid>``` as root, such that *```<iface>```* is the extra network interface, and *```<ssid>```* is the name of the AP you want to try to connect to
-   4. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the html page
+   4. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the HTML page
    5. In the text box enter a password, if you want the test the checking password part you may want to enter the correct password to the *```<ssid>```*, and an incorrect password
    6. A related message, whether the password was correct or incorrect, will appear at the top of the presented HTML 
    7. Go to ```passwords.txt``` file and you should see the passwords you entered. You should also see a messages with the passwords in the terminal window
