@@ -168,7 +168,7 @@ In order to run the defence, do as following:
 
 ## Web Server Part
 ### Files
-* **index2.js**
+* **index2.js**  
   This file is the web server................
   - **HTML page**  
   The HTML that we present to the client is - ```generateHTML```
@@ -193,7 +193,7 @@ If you run ```fake_ap.py```, it will automatically open a new terminal window an
 In order to run and test the web server, do as following:
    1. Go to ```evil-twin/attack/html``` folder
    2. Run the command ```$ node index2.js``` as root
-   3. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the html part in ```index2.js```
+   3. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the html page
    4. In the text box enter the password, you can enter a random sequence of letters and numbers just for the test
    5. Go to ```passwords.txt``` file and you should see the sequence you entered. You should also see a message with the password in the terminal window
    6. If you want to check the password, you can do it manually from another device
@@ -213,7 +213,7 @@ To run and test the web server, do as following:
       - Comment the line ```title = "Authenticating...\n If you wait more than 1min. the password is INCORRECT." ```
       - Don't forget to SAVE the file
    3. Run the command ```$ node index2.js <iface> <ssid>``` as root, such that ```<iface>``` is the extra network interface, and ```<ssid>``` is the name of the AP you want to try to connect to
-   4. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the html part in ```index2.js```
+   4. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the html page
    5. In the text box enter a password, if you want the test the checking password part you may want to enter the correct password to the ```<ssid>```, and an incorrect password
    6. A related message, whether the password was correct or incorrect, will appear in the top of the presented HTML 
    7. Go to ```passwords.txt``` file and you should see the passwords you entered. You should also see a messages with the passwords in the terminal window
