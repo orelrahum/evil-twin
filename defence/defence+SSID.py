@@ -44,9 +44,9 @@ def monitor_mode():
     os.system('ifconfig ' + interface + ' up')
     # os.system('iwconfig') #check
 
-### After we finish our attack, we want to switch back the interface to 'managed mode'. 
+### After we finish our defence, we want to switch back the interface to 'managed mode'. 
 def managed_mode():
-    print(G + "\n*** Step 3: Put the interface back in 'managed mode'. *** \n")
+    print(G + "\n*** Step 4: Put the interface back in 'managed mode'. *** \n")
     empty = input ("Press Enter in order to put " + interface + " in 'managed mode' .........\n")
     print(W)
     os.system('ifconfig ' + interface + ' down')
@@ -106,7 +106,6 @@ def ap_scan():
         with open('data.txt', 'w') as outfile:
             json.dump(data, outfile)
             '''
-        # client_scan_rap()
     else: 
         # If no AP was found. 
         rescan = input("No networks were found. Do you want to rescan? [Y/n] ")
@@ -160,10 +159,10 @@ def ap_scan_pkt(pkt):
 
 ### In this function we sniff all the packets, and if we recognize that 30 packets of deauthentication has been sniffed we will alert that there is attempt to do deathentication attack in your network's area
 def deathentication_check():
-	print(G + "*** Step 2: Sniffing the packets and checking for deauthentication attack. *** \n")
-	print(G + "In case that will be sniffed 30 deauthentication packets, you will alerted that there is attempt to do deathentication attack in your network's area. \n")
+	print(G + "*** Step 3: Sniffing the packets and checking for deauthentication attack. *** \n")
+	print(G + "In case that will be sniffed 30 deauthentication packets, you will alerted that there is attempt to do deathentication attack to the AP you choose. \n")
 	empty = input ("Press Enter to continue.........\n")
-	print(B + "Sniffing packets for 60 second intervals...")
+	print(B + "Sniffing packets for 60 second ...")
 	print(W)
 	
 	sniff(iface=interface, prn = packet_handler , stop_filter=stopfilter)
@@ -177,9 +176,6 @@ count = 0
 def packet_handler(pkt):
 	global count
 	global start_time
-	#print(str(pkt.type) + "               " + str(pkt.subtype))
-	#    print "got pkt"
-	#if pkt.haslayer(Dot11FCS)
 	# 0xC - stand for deauthentication paket
 	if pkt.type == 0 and pkt.subtype == 0xC:
 		try:
@@ -189,20 +185,21 @@ def packet_handler(pkt):
 			#print ("the ap_mac is :" + ap_mac)
 			if ap_mac in str(pkt.addr2):
 				count=count+1
-				print (O + "Deauthentication packet sniffed. Packet number: " + str(count))
+				print (O + "Deauthentication packet has been sniffed. Packet number: " + str(count))
 		except:
 			#pass
 			print("An exception occurred")
-
+	# If 60 sec had passed and deauthentication attack didn't occur, than we reset count to 0 and start counting again
 	if  time.time()-start_time > 60 :
 		count=0		
-		print(W + "All is OK for this interval time , will start new interval")
+		print(W + "Meanwhile, everything is OK :) ")
 		start_time=time.time()
 
-
+### Stop condition for sniffing the deauthentication packets 
 def stopfilter(x):
+	# If there was attemp to do deathentication attack, we stop the packets sniffing and alerts the user about it
 	if count==30:
-		print(R + "WARNNING!! There is deathentication attack in your area. \n It is possible that your network is under deauthentication attack!")
+		print(R + "WARNNING!! There is attemp to do deathentication attack on your netwotk. \n")
 		return True
 	else:
 		return False
@@ -214,7 +211,7 @@ if __name__ == "__main__":
 	if os.geteuid():
 		sys.exit(R + '[**] Please run as root')
     
-	print("********************************************************************** \n")
+	print(B + "********************************************************************** \n")
 	print("************ Part 3: defence from deauthentication attack ************ \n")
 	print("********************************************************************** \n")
 	
@@ -223,12 +220,12 @@ if __name__ == "__main__":
 	
 	### Step 2: Choosing the AP that we want to attack. 
 	ap_scan_rap()
-	### Step 2: Sniffing the packets and checking for deauthentication attack.
+	
+	### Step 3: Sniffing the packets and checking for deauthentication attack.
 	start_time = time.time()
-
 	deathentication_check()	
 	
-	###Step 3: Put the interface back in 'managed mode'.
+	### Step 4: Put the interface back in 'managed mode'.
 	managed_mode()
 	
 	
