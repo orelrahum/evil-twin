@@ -214,12 +214,17 @@ To run and test the web server, do as following:
       - Uncomment the line ```title = ans ? 'Great succeess :)' : 'The password is incorrect. :('; ```
       - Comment the line ```title = "Authenticating...\n If you wait more than 1min. the password is INCORRECT." ```
       - Don't forget to SAVE the file
-   3. Run the command ```$ node index2.js <iface> <ssid>``` as root, such that *```<iface>```* is the extra network interface, and *```<ssid>```* is the name of the AP you want to try to connect to
-   4. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the HTML page
-   5. In the text box enter a password, if you want the test the checking password part you may want to enter the correct password to the *```<ssid>```*, and an incorrect password
-   6. A related message, whether the password was correct or incorrect, will appear at the top of the presented HTML 
-   7. Go to ```passwords.txt``` file and you should see the passwords you entered. You should also see a messages with the passwords in the terminal window
-   8. And most importantly, HAVE FUN :) 
+   3. If you are running ```fake_ap.py```, you also need to do some changes in the ```fake_ap.py``` file:
+      - In the function ```run_fake_ap()```, change the line  
+      ```os.system('gnome-terminal -- sh -c "node html/index2.js"')```  
+      to  
+      ```os.system('gnome-terminal -- sh -c "node html/index2.js <iface> essid"')```, such that *```<iface>```* is the extra network interface
+   4. If you are not running ```fake_ap.py```, run in the terminal the command ```$ node index2.js <iface> <ssid>``` as root, such that *```<iface>```* is the extra network interface, and *```<ssid>```* is the name of the AP you want to try to connect to
+   5. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the HTML page
+   6. In the text box enter a password, if you want the test the checking password part you may want to enter the correct password to the *```<ssid>```*, and an incorrect password
+   7. A related message, whether the password was correct or incorrect, will appear at the top of the presented HTML 
+   8. Go to ```passwords.txt``` file and you should see the passwords you entered. You should also see a messages with the passwords in the terminal window
+   9. And most importantly, HAVE FUN :) 
 
    
    
