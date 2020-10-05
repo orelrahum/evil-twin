@@ -1,5 +1,6 @@
 from scapy.all import *
 import os
+import time
 
 ### Console colors
 W  = '\033[0m'  # white 
@@ -53,8 +54,9 @@ def deathentication_check():
 	print(G + "*** Step 2: Sniffing the packets and checking for deauthentication attack. *** \n")
 	print(G + "In case that will be sniffed 30 deauthentication packets, you will alerted that there is attempt to do deathentication attack in your network's area. \n")
 	empty = input ("Press Enter to continue.........\n")
-	print("Sniffing packets...")
+	print(B + "Sniffing packets for 60 second intervals...")
 	print(W)
+	
 	sniff(iface=interface, prn = packet_handler , stop_filter=stopfilter)
 	# sniff(iface="wlxc83a35c2e0b7", prn = PacketHandler , stop_filter=stopfilter)
 	print(W)
@@ -65,13 +67,18 @@ def deathentication_check():
 count = 0
 def packet_handler(pkt):
 	global count
+	global start_time
 	#print(str(pkt.type) + "               " + str(pkt.subtype))
 	#    print "got pkt"
 	#if pkt.haslayer(Dot11FCS)
 	# 0xC - stand for deauthentication paket 
 	if pkt.type == 0 and pkt.subtype == 0xC:
 		count=count+1
-		print ("Deauthentication packet sniffed. Packet number: " + str(count))
+		print (O + "Deauthentication packet sniffed. Packet number: " + str(count))
+	if  time.time()-start_time > 10 :
+		count=0		
+		print("All is OK for this interval time , will start new interval")
+		start_time=time.time()
 
 
 def stopfilter(x):
@@ -96,6 +103,8 @@ if __name__ == "__main__":
 	monitor_mode()
 	
 	### Step 2: Sniffing the packets and checking for deauthentication attack.
+	start_time = time.time()
+
 	deathentication_check()	
 	
 	###Step 3: Put the interface back in 'managed mode'.
