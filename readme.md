@@ -1,24 +1,43 @@
 # Evil Twin - Attack and Defence
 
-## Requirements
+<!-- ----------------------------------------------------------------------- -->
+<!-- ------------------ Requirements for running the code ------------------ -->
+<!-- ----------------------------------------------------------------------- -->
+
+## Requirements ##
+
 * The code run on Unix OS (Kali, Ubuntu, etc.)
 * Hardware requirements:
   - 2 network interface, such that at least one of them has the ability to be in 'monitor mode'  
     Notice that it is most likely that the internal network interface in your computer doen't have the ability to be switched to 'monitor mode', so you will need at least 1 external network interface
-  - In your computer, change the ```html``` folder in the path ```/var/www/html``` to the [html](https://github.com/orelrahum/evil-twin/tree/master/html) folder from our github
-  - Give full premission to ```passwords.txt``` file. You can do it by running the following command:   
+   - Give full premission to ```passwords.txt``` file. You can do it by running the following command:   
   ```$ sudo chmod +rwx passwords.txt``` 
-    - You can check the ```index.php``` and ```passwords.txt``` files, after you installed apache2, by doing the following:  
-      1. Start the apache server: ```$ sudo service apache2 start```  
-      2. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the ```index.php```
-      3. In the text box enter the password, you can enter a random sequence of letters and numbers just for the test
-      4. Go to ```passwords.txt``` file and you should see the sequence that you entered
+  <!-- \\Doesn't need this when using JavaScript
+       - In your computer, change the ```html``` folder in the path ```/var/www/html``` to the [html](https://github.com/orelrahum/evil-twin/tree/master/html) folder from our github 
+       - Give full premission to ```passwords.txt``` file. You can do it by running the following command:   
+       ```$ sudo chmod +rwx passwords.txt``` 
+       - You can check the ```index.php``` and ```passwords.txt``` files, after you installed apache2, by doing the following:  
+         1. Start the apache server: ```$ sudo service apache2 start```  
+         2. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the ```index.php```
+         3. In the text box enter the password, you can enter a random sequence of letters and numbers just for the test
+         4. Go to ```passwords.txt``` file and you should see the sequence that you entered -->
 * Requirements:
   - Update package manager:   
   ```$ sudo apt-get update```  
   ```$ sudo apt-get upgrade```
-  - Install apache2:   
-  ```$ sudo apt install apache2```
+  <!-- \\Doesn't need apache2 when using JavaScript
+      - Install apache2:   
+      ```$ sudo apt install apache2``` -->
+  - Install node-js:  
+  ```$ sudo apt install nodejs```
+  - Install npm:  
+  ```$ sudo apt install npm```
+  - Install express (require for js):  
+  ```$ npm install express```
+  - Install body-parser (require for js):  
+  ```$ npm install body-parser```
+  - Install node-wifi (require for js):  
+  ```$ npm install node-wifi```
   - Install php:   
   ```$ sudo apt install php libapache2-mod-php```
   - Once the php is installed restart the Apache service:   
@@ -40,6 +59,9 @@
 * You can clone our codes by typing this command in the terminal:   
  ```$ git clone https://github.com/orelrahum/evil-twin```    
 
+<!-- ----------------------------------------------------------------------- -->
+<!-- -------------- Attack Part (Files & How to run the code) -------------- -->
+<!-- ----------------------------------------------------------------------- -->
 
 ## Attack Part
 
@@ -82,7 +104,6 @@
   - Delete all the configuration files we created, and reset the setting to what was before the attack 
 
 ### How to run the code
-
 In this part there are 2 options to run the code, either run a full attack (Part 1 + Part 2) or just the fake AP (Part 2)
 
 #### Option 1 - Full attack (Part 1 + Part 2)
@@ -114,9 +135,11 @@ In order to run the fake AP, do as following:
 
 ![fake_ap](https://github.com/orelrahum/evil-twin/blob/master/picture/fake_ap.JPG?raw=true)
 
+<!-- ----------------------------------------------------------------------- -->
+<!-- -------------- Defence Part (Files & How to run the code) ------------- -->
+<!-- ----------------------------------------------------------------------- -->
 
 ## Defence Part
-
 ### Files
 #### Part 3
 * **defence.py**
@@ -131,8 +154,6 @@ In order to run the fake AP, do as following:
 
 
 ### How to run the code
-
-
 In order to run the defence, do as following:
    1. Go to ```evil-twin/defence``` folder
    2. Run the command ```$ python3 defence.py``` as root (see picture below)
@@ -140,3 +161,63 @@ In order to run the defence, do as following:
    4. And most importantly, HAVE FUN :) 
    
    ![defence](https://github.com/orelrahum/evil-twin/blob/master/picture/defence.JPG?raw=true)
+   
+<!-- ----------------------------------------------------------------------- -->
+<!-- ------------- WebServer Part (Files & How to run the code) ------------ -->
+<!-- ----------------------------------------------------------------------- -->
+
+## Web Server Part
+### Files
+* **index2.js**
+  This file is the web server................
+  - **HTML page**  
+  The HTML that we present to the client is - ```generateHTML```
+  - **GET method requests** 
+  In general, the GET method requests a representation of the specified resource  
+  In our case, when then client requesting for a website (any website) there is GET method request, the server will response with the ```generateHTML``` to any such a request  
+  In the server side (attacker side) when there is GET requests, a message will appear informing that the client tried to enter a website  
+  <!-- Notice that this work only on HTTP, and not on HTTPS ???????? -->
+  - **POST method requests** 
+  In general, the POST request method requests that a web server accepts the data enclosed in the body of the request message, most likely for storing it  
+  In our case, when then client enter a password and click the ```Connect``` button there is POST method request, the server will response with the new ```generateHTML``` (now ```title``` has new value) to any such a request  
+  In the server side (attacker side) when there is POST requests, a message will appear informing that the client entered a new password, the password will be saved in the file ```passwords.txt```  
+  
+  
+
+### How to run the code
+In this part there are 2 options to run the code, either run it and manually check the given password by the client, or run it and automatically check the given password by the client by using [node-wifi](https://www.npmjs.com/package/node-wifi)  
+Notice that you can run this file separately to test that it works. If you run it without running the ```fake_ap.py```, no client will be able to access it  
+If you run ```fake_ap.py```, it will automatically open a new terminal window and run the web server in it  
+
+#### Option 1 - Manually check the password
+In order to run and test the web server, do as following:
+   1. Go to ```evil-twin/attack/html``` folder
+   2. Run the command ```$ node index2.js``` as root
+   3. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the html part in ```index2.js```
+   4. In the text box enter the password, you can enter a random sequence of letters and numbers just for the test
+   5. Go to ```passwords.txt``` file and you should see the sequence you entered. You should also see a message with the password in the terminal window
+   6. If you want to check the password, you can do it manually from another device
+   7. And most importantly, HAVE FUN :) 
+
+#### Option 2 - A utomatically check the password
+In order automatically check the password you will need an extra network interface in 'managed mode'  
+To run and test the web server, do as following:
+   1. Go to ```evil-twin/attack/html``` folder
+   2. Now you need to do some changes in the ```index2.js``` file: 
+      - Uncomment the line ```const wifi = require('node-wifi'); ```
+      - Uncomment the section ```const checkPassword = async (password) => { ... }; ```
+      - Uncomment the line ```app.post('/password', async (req, res) => { ```
+      - Comment the line ```app.post('/password', (req, res) => { ```
+      - Uncomment the line ```const ans = await checkPassword(password); ```
+      - Uncomment the line ```title = ans ? 'Great succeess :)' : 'The password is incorrect. :('; ```
+      - Comment the line ```title = "Authenticating...\n If you wait more than 1min. the password is INCORRECT." ```
+      - Don't forget to SAVE the file
+   3. Run the command ```$ node index2.js <iface> <ssid>``` as root, such that ```<iface>``` is the extra network interface, and ```<ssid>``` is the name of the AP you want to try to connect to
+   4. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the html part in ```index2.js```
+   5. In the text box enter a password, if you want the test the checking password part you may want to enter the correct password to the ```<ssid>```, and an incorrect password
+   6. A related message, whether the password was correct or incorrect, will appear in the top of the presented HTML 
+   7. Go to ```passwords.txt``` file and you should see the passwords you entered. You should also see a messages with the passwords in the terminal window
+   8. And most importantly, HAVE FUN :) 
+
+   
+   
