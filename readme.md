@@ -139,7 +139,7 @@ In order to run the fake AP, do as following:
   3. Follow the instructions as in the code
   4. And most importantly, HAVE FUN :) 
 
-![fake_ap](https://github.com/orelrahum/evil-twin/blob/master/picture/fake_ap.JPG?raw=true)
+![fake_ap](https://github.com/orelrahum/evil-twin/blob/master/pictures2/7.1%20-%20fake_ap%2Bname.png)
 
 <!-- ----------------------------------------------------------------------- -->
 <!-- -------------- Defence Part (Files & How to run the code) ------------- -->
@@ -168,7 +168,7 @@ In order to run the defence, do as following:
    3. Follow the instructions as in the code
    4. And most importantly, HAVE FUN :) 
    
-   ![defence](https://github.com/orelrahum/evil-twin/blob/master/picture/defence.JPG?raw=true)
+   ![defence run](https://github.com/orelrahum/evil-twin/blob/master/pictures2/10%20-%20defence_run.png)
    
 <!-- ----------------------------------------------------------------------- -->
 <!-- ------------- WebServer Part (Files & How to run the code) ------------ -->
@@ -182,7 +182,7 @@ In order to run the defence, do as following:
    In our case, the web server contain one website, our HTML page. And processes incoming network requests over HTTP only.
    - **HTML page**  
   The HTML that we present to the client is - ```generateHTML```  
-  ![website](https://github.com/orelrahum/evil-twin/blob/master/pictures2/9%20-%20website-client_side.jpg)
+  ![website](https://github.com/orelrahum/evil-twin/blob/master/pictures2/9%20-%20website-client_side.PNG)
   - **GET method requests**  
   In general, the GET method requests a representation of the specified resource  
   In our case, when then client requesting for a website (any website) there is GET method request, the server will response with the ```generateHTML``` to any such a request  
@@ -205,6 +205,7 @@ If you run [```fake_ap.py```](https://github.com/orelrahum/evil-twin/blob/master
 In order to run and test the web server, do as following:
    1. Go to ```evil-twin/attack/html``` folder
    2. Run the command ```$ node index2.js``` as root
+     ![web server run](https://github.com/orelrahum/evil-twin/blob/master/pictures2/8.1%20-%20web_server.png)
    3. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the HTML page
    4. In the text box enter the password, you can enter a random sequence of letters and numbers just for the test
    5. Go to ```passwords.txt``` file and you should see the sequence you entered. You should also see a message with the password in the terminal window  
