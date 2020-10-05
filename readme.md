@@ -70,11 +70,14 @@
 * [**wifi_attack.py**](https://github.com/orelrahum/evil-twin/blob/master/attack/wifi_attack.py)  
   - **Step 1: Choosing an interface to put in 'monitor mode'**    
     Here you need to choose the network interface that will scan the network for possible APs (Access Points) to attack, and after that will send the de-authentication packets  
-    Notice that you need to choose the network interface that can be switched to 'monitor mode'
+    Notice that you need to choose the network interface that can be switched to 'monitor mode'   
+    ![list_of_interface_monitor](https://github.com/orelrahum/evil-twin/blob/master/pictures2/2%20-%20list_of_interface_monitor.png) 
   - **Step 2: Scanning the network for AP to attack**  
-    Here you will see all the APs that were found in the network scan, and you need to choose the AP you want to attack. If no AP was found, you can choose either to rescan the network or to quit  
+    Here you will see all the APs that were found in the network scan, and you need to choose the AP you want to attack. If no AP was found, you can choose either to rescan the network or to quit   
+    ![list_of_APs](https://github.com/orelrahum/evil-twin/blob/master/pictures2/3%20-%20list_of_ap.png) 
   - **Step 3: Verifying that at least 1 client connected to the AP you choose**  
-    In order to attack the chosen AP we need to verify that there is at least 1 client connected to it. If no client found, you can choose either to rescan for clients or to quit  
+    In order to attack the chosen AP we need to verify that there is at least 1 client connected to it. If no client found, you can choose either to rescan for clients or to quit   
+    ![list_of_clients](https://github.com/orelrahum/evil-twin/blob/master/pictures2/4%20-%20list_of_clients.png) 
   - **Step 4: Disconnect the connection between the AP from the client**  
     Here we want to disconnect between the chosen AP and client. We will do that by running [```deauth.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/deauth.py), this file will run in the background as long as the attack is running
   - **Step 5: Put the interface back in 'managed mode'**  
@@ -83,6 +86,7 @@
 * [**deauth.py**](https://github.com/orelrahum/evil-twin/blob/master/attack/deauth.py)
   - Here we will send the deauthentication packets from to chosen AP to the chosen client and vice versa, it will cause them to disconnect from each other  
   Notice that when this file is start running, it will run in the same terminal as the [```wifi_attack.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/wifi_attack.py). A new terminal, that will run [```fake_ap.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/fake_ap.py), will be opened in order to continue the attack  
+  ![deauthen + fake AP](https://github.com/orelrahum/evil-twin/blob/master/pictures2/5%20-%20deauthen%2Bfake_AP.png) 
 
 #### Part 2
 * [**fake_ap.py**](https://github.com/orelrahum/evil-twin/blob/master/attack/fake_ap.py)  
@@ -92,8 +96,10 @@
   - **Step 2:  Activation of the fake AP**  
     Here  we will start running the fake AP. First, we will create the configuration files using [```create_conf_files.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/create_conf_files.py). Second, we activate the fake AP  
     After the fake AP will start running, the attacked client will be able to connect to it. After the client conected  
-    When the fake AP start running a new terminal, that will run [```index2.js```](https://github.com/orelrahum/evil-twin/blob/master/attack/html/index2.js), will be opened in order to run the web server. More information about the web server will be explained [below](#web-server-part)  
     Notice that the IP of the fake AP will be - ```10.0.0.1```
+    ![fake AP - client side](https://github.com/orelrahum/evil-twin/blob/master/pictures2/7%20-%20fake_AP-client_side.jpg)  
+    When the fake AP start running a new terminal, that will run [```index2.js```](https://github.com/orelrahum/evil-twin/blob/master/attack/html/index2.js), will be opened in order to run the web server. More information about the web server will be explained [below](#web-server-part)   
+    ![fake AP + web server](https://github.com/orelrahum/evil-twin/blob/master/pictures2/6%20-%20fake_ap%2Bweb_server.png)  
   - **Step 3:  Deactivation of the fake AP**  
     After checking that the password the client entered is correct, we can turn off the fake AP. We will delete all the configuration files we created, and reset the setting to what was before the attack  
 
@@ -120,7 +126,7 @@ In this part there are 2 options to run the code, either run a full attack (Part
   3. Follow the instructions as in the code
   4. And most importantly, HAVE FUN :) 
   
-  ![wifi_attack](https://github.com/orelrahum/evil-twin/blob/master/picture/wifi_attack.JPG?raw=true)
+  ![wifi_attack](https://github.com/orelrahum/evil-twin/blob/master/pictures2/1%20-%20wifi_attack_run.png)
 
 #### Option 2 - Fake AP (Part 2)
 - Just run the fake AP  
@@ -173,7 +179,8 @@ In order to run the defence, do as following:
   In general, web server contain one or more websites. A web server processes incoming network requests over HTTP and several other related protocols  
    In our case, the web server contain one website, our HTML page. And processes incoming network requests over HTTP only.
    - **HTML page**  
-  The HTML that we present to the client is - ```generateHTML```
+  The HTML that we present to the client is - ```generateHTML```  
+  ![website](https://github.com/orelrahum/evil-twin/blob/master/pictures2/9%20-%20website-client_side.jpg)
   - **GET method requests**  
   In general, the GET method requests a representation of the specified resource  
   In our case, when then client requesting for a website (any website) there is GET method request, the server will response with the ```generateHTML``` to any such a request  
@@ -198,7 +205,8 @@ In order to run and test the web server, do as following:
    2. Run the command ```$ node index2.js``` as root
    3. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the HTML page
    4. In the text box enter the password, you can enter a random sequence of letters and numbers just for the test
-   5. Go to ```passwords.txt``` file and you should see the sequence you entered. You should also see a message with the password in the terminal window
+   5. Go to ```passwords.txt``` file and you should see the sequence you entered. You should also see a message with the password in the terminal window  
+   ![webserver password](https://github.com/orelrahum/evil-twin/blob/master/pictures2/8%20-%20web_server%2Bpassword.png)
    6. If you want to check the password, you can do it manually from another device
    7. And most importantly, HAVE FUN :) 
 
