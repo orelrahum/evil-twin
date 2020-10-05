@@ -81,14 +81,14 @@
     Once attack done, we need to switch back the network interface to 'managed mode'
   
 * [**deauth.py**](https://github.com/orelrahum/evil-twin/blob/master/attack/deauth.py)
-  - Here we will send the de-authentication packets from to chosen AP to the chosen client and vice versa, it will cause them to disconnect from each other  
+  - Here we will send the deauthentication packets from to chosen AP to the chosen client and vice versa, it will cause them to disconnect from each other  
   Notice that when this file is start running, it will run in the same terminal as the [```wifi_attack.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/wifi_attack.py). A new terminal, that will run [```fake_ap.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/fake_ap.py), will be opened in order to continue the attack  
 
 #### Part 2
 * [**fake_ap.py**](https://github.com/orelrahum/evil-twin/blob/master/attack/fake_ap.py)  
   - **Step 1:  Choosing an interface that will be used for the fake AP**  
     Here you need to choose the network interface that will be used as the fake AP  
-    Notice that this network interface needs to be in 'managed mode', and that you cannot choose the same network interface as you choose at the beginning (it is still sending the de-authentication packets in the background)
+    Notice that this network interface needs to be in 'managed mode', and that you cannot choose the same network interface as you choose at the beginning (it is still sending the deauthentication packets in the background)
   - **Step 2:  Activation of the fake AP**  
     Here  we will start running the fake AP. First, we will create the configuration files using [```create_conf_files.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/create_conf_files.py). Second, we activate the fake AP  
     After the fake AP will start running, the attacked client will be able to connect to it. After the client conected  
