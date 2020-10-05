@@ -115,7 +115,7 @@ In this part there are 2 options to run the code, either run a full attack (Part
   In this option the name of the fake AP will be as the name of the choosen AP
   
   In order to run full attack, do as following:
-  1. Go to [```evil-twin/attack```](https://github.com/orelrahum/evil-twin/tree/master/attack) folder
+  1. Go to ```evil-twin/attack``` folder
   2. Run the command ```$ python3 wifi_attack.py``` as root (see picture below)
   3. Follow the instructions as in the code
   4. And most importantly, HAVE FUN :) 
@@ -128,7 +128,7 @@ In this part there are 2 options to run the code, either run a full attack (Part
 In this option you need to choose the name of the fake AP
 
 In order to run the fake AP, do as following:
-  1. Go to [```evil-twin/attack```](https://github.com/orelrahum/evil-twin/tree/master/attack) folder
+  1. Go to ```evil-twin/attack``` folder
   2. Run the command ```$ python3 fake_ap.py <your_fake_ap_name>``` as root (see picture below), such that *```<your_fake_ap_name>```* is the name of the fake AP. 
   3. Follow the instructions as in the code
   4. And most importantly, HAVE FUN :) 
@@ -155,7 +155,7 @@ In order to run the fake AP, do as following:
 
 ### How to run the code
 In order to run the defence, do as following:
-   1. Go to [```evil-twin/defence```](https://github.com/orelrahum/evil-twin/tree/master/defence) folder
+   1. Go to ```evil-twin/defence``` folder
    2. Run the command ```$ python3 defence.py``` as root (see picture below)
    3. Follow the instructions as in the code
    4. And most importantly, HAVE FUN :) 
@@ -193,7 +193,7 @@ If you run [```fake_ap.py```](https://github.com/orelrahum/evil-twin/blob/master
 
 #### Option 1 - Manually check the password
 In order to run and test the web server, do as following:
-   1. Go to [```evil-twin/attack/html```](https://github.com/orelrahum/evil-twin/tree/master/attack/html)` folder
+   1. Go to ```evil-twin/attack/html``` folder
    2. Run the command ```$ node index2.js``` as root
    3. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the HTML page
    4. In the text box enter the password, you can enter a random sequence of letters and numbers just for the test
@@ -204,7 +204,7 @@ In order to run and test the web server, do as following:
 #### Option 2 - Automatically check the password
 In order automatically check the password you will need an extra network interface in 'managed mode'  
 To run and test the web server, do as following:
-   1. Go to [```evil-twin/attack/html```](https://github.com/orelrahum/evil-twin/tree/master/attack/html)   folder
+   1. Go to ```evil-twin/attack/html``` folder
    2. Now you need to do some changes in the ```index2.js``` file: 
       - Uncomment the line ```const wifi = require('node-wifi'); ```
       - Uncomment the section ```const checkPassword = async (password) => { ... }; ```
