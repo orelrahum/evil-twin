@@ -141,7 +141,7 @@ if __name__ == "__main__":
 	remove_conf_files()
 	reset_setting()
 	
-	print(G + "Everything returned back to default setting. \n Hope to see you soon :) ***\n")
+	print(G + "Everything returned back to default setting. \nHopes to see you soon :) ***\n")
 
 	
 	
