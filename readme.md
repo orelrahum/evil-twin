@@ -243,7 +243,19 @@ To run and test the web server, do as following:
    8. Go to ```passwords.txt``` file and you should see the passwords you entered. You should also see a messages with the passwords in the terminal window
    9. And most importantly, HAVE FUN :) 
 
-### Possible errors
+## Common errors and Suggested solutions
+  ### Attack and Defence
+  * Error for "Set Frequency":  
+    ![frequence_error](https://github.com/orelrahum/evil-twin/blob/master/pictures2/frequence_error.png)  
+    This happens when you trying to do something that requires the network interface to be in 'monitor mode', but for some reason the network interface is no longer in 'monitor mode'  
+    Here are some reasons why it can happen and suggested solutions:
+    - There are 3 files that use the 'monitor mode': ```wifi_attack.py```, ```deauth.py```, and ```defence.py```. You ran 2 (or 3) of them at the same time, and you use the same network interface in 'monitor mode'. If one program ended, before the other, and it switched the network interface back to 'managed mode', the other program still trying to use the network interface in 'monitor mode'  
+      If you have another external network interface that can be switched to 'monitor mode', it is recommended to use separated network interface. Another option is to pay attention not to finish one program before the other, so it would not switch the network interface back to 'managed mode'  
+    - The network interface is connected to some wireless network, and you are trying to switch it to 'monitor mode'  
+      Disconnect the network interface from the network and press "Forget Connection/Network"  
+
+  ### Web Server
   * Port 80 aleady in use:  
     ![web-server_error-80](https://github.com/orelrahum/evil-twin/blob/master/pictures2/web-server_error-80.png)  
-    This means that you probably have another web server (Apache, IIS, etc.) that in use at the moment, and you need to stop it's service. For example, if you have Apache in use, you need to run the command ```$ sudo service apache2 stop```   
+    This probably happen because you have another web server (Apache, IIS, etc.) that in use at the moment, and it is using port: 80  
+    You need to stop it's service. For example, if you have Apache in use, you need to run the command ```$ sudo service apache2 stop```   
