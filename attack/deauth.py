@@ -14,6 +14,8 @@ interface = sys.argv[3]
 # addr1: destination MAC address
 # addr2: source MAC address
 # addr3: BSSID - AP MAC address
+# RadioTap is making it easier to transmit information between OSI layers
+# Dot11 represent the MAC header, it is the abbreviated specification name 802.11
 
 ### Deauthentication packet from client to AP.
 pkt_to_ap = RadioTap()/Dot11(addr1=client, addr2=ap, addr3=ap)/Dot11Deauth()
