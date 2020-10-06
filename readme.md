@@ -26,8 +26,12 @@
   ```$ sudo apt-get update```  
   ```$ sudo apt-get upgrade```
   <!-- \\Doesn't need apache2 when using JavaScript
-      - Install apache2:   
-      ```$ sudo apt install apache2``` -->
+        - Install apache2:   
+       ```$ sudo apt install apache2```
+        - Install php:   
+        ```$ sudo apt install php libapache2-mod-php```
+        - Once the php is installed restart the Apache service:   
+       ```$ sudo systemctl restart apache2```-->
   - Install node-js:  
   ```$ sudo apt install nodejs```
   - Install npm:  
@@ -38,10 +42,6 @@
   ```$ npm install body-parser```
   - Install node-wifi (require for js):  
   ```$ npm install node-wifi```
-  - Install php:   
-  ```$ sudo apt install php libapache2-mod-php```
-  - Once the php is installed restart the Apache service:   
-  ```$ sudo systemctl restart apache2```
   - Install python3:   
   ```$ sudo apt-get install python3.6```
   - Install pip3:   
