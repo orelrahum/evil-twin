@@ -2,6 +2,10 @@ import os
 import sys
 from scapy.all import *
 from scapy.layers.dot11 import Dot11, Dot11Beacon, Dot11Elt 
+### Dot11 represent the MAC header, it is the abbreviated specification name 802.11
+### Dot11Elt layers is where we put the necessary information: SSID, supported speeds (up to eight), additional supported speeds, channel used.
+### Dot11Beacon represents an IEEE 802.11 Beacon
+
 
 # import json
 
