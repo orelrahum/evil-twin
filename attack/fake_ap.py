@@ -62,15 +62,15 @@ def fake_ap_on():
 	os.system('route add default gw 10.0.0.1')
 	### Enable IP forwarding (1 indicates to enable / 0 indicates to disable)
 	os.system('echo 1 > /proc/sys/net/ipv4/ip_forward')
-	### Flush all chains - delete all of the firewall rules in all tables.
+	### Flush all chains - delete all of the firewall rules.
 	# Chain is the set of rules that filter the incoming and outgoing data packets.
 	os.system('iptables --flush')
 	os.system('iptables --table nat --flush')
 	os.system('iptables --delete-chain')
 	os.system('iptables --table nat --delete-chain')
-	### Allowing packets that forwarded to somewhere else to pass through. 
+	### Allowing packets to pass through. 
 	os.system('iptables -P FORWARD ACCEPT')
-
+ 
 
 ### Link dnsmasq and hostapd to the configuration files. And Run the apache server.
 def run_fake_ap():
