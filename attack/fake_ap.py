@@ -20,8 +20,10 @@ T  = '\033[93m' # tan
 
 ### Reset all the setting before we satrt. 
 def reset_setting():
-	### Start system network service.
+	### Start system network service
 	os.system('service NetworkManager start')
+	### Stop apache2 service
+	os.system('service apache2 stop')
 	### Stop and kill the hostapd and dnsmasq services.
 	os.system('service hostapd stop')
 	os.system('service dnsmasq stop')
