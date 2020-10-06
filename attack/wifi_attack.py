@@ -147,7 +147,7 @@ def set_channel(channel):
 ### The argument 'prn' allows us to pass a function that executes with each packet sniffed. 
 def ap_scan_pkt(pkt):
     if pkt.haslayer(Dot11Beacon):
-        # Get the BSSID (MAC ADDR) of the AP
+        # Get the source MAC address - BSSID of the AP
         bssid = pkt[Dot11].addr2
         # Get the ESSID (name) of the AP
         essid = pkt[Dot11Elt].info.decode()
