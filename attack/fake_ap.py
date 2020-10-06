@@ -115,6 +115,7 @@ if __name__ == "__main__":
 	print(B + "********************************************************************** \n")
 	print("******** Part 2: Set up & upload fake AP. MOHAHA. WE ARE EVIL ******** \n")
 	print("********************************************************************** \n")
+	### Step 1: Choosing the interface to be used as the AP
 	print(G + "*** Step 1:  Choosing an interface that will be used for the fake AP. ***\n")
 	empty = input ("Press Enter to continue.........")
 	print(W)
@@ -122,21 +123,28 @@ if __name__ == "__main__":
 	global interface2
 	interface2 = input(G + "Please enter the interface name you want to use: ")
 	
+	# Reset all the setting
 	reset_setting() 
+	
 	# ssid=input("Please enter the SSID name ")
 	global essid
+	# the name of the fake AP
 	essid = sys.argv[1] 
 	
+	### Step 2: Activate the fake AP
 	print(G + "*** Step 2:  Activation of the fake AP. ***\n")
 	empty = input ("Press Enter to continue.........")
 	print(W)
 	fake_ap_on()
 	create_conf_files()
 	run_fake_ap()
+	
+	### Step 3: Deactivate the fake AP
 	print(G + "*** Step 3:  Deactivation of the fake AP. ***\n")
 	empty = input ("\nPress Enter to Close Fake Accses Point AND Power OFF the fake AP.........\n")
 	remove_conf_files()
 	reset_setting()
+	
 	print(G + "Everything returned back to default setting. \n Hope to see you soon :) ***\n")
 
 	
