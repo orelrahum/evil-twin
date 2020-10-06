@@ -21,14 +21,15 @@ def reset_setting():
 	### Stop apache2 service
 	os.system('service apache2 stop')
 	### Stop and kill the hostapd and dnsmasq services.
-	os.system('service hostapd stop')
-	os.system('service dnsmasq stop')
-	os.system('service rpcbind stop')
+	os.system('service hostapd stop') #hostapd (host access point daemon) for make access point
+	os.system('service dnsmasq stop') #dsnmasq is to make DNS and DHCP server
+	os.system('service rpcbind stop') #https://linux.die.net/man/8/rpcbind#:~:text=The%20rpcbind%20utility%20is%20a,it%20is%20prepared%20to%20serve.
 	os.system('killall dnsmasq >/dev/null 2>&1')
 	os.system('killall hostapd >/dev/null 2>&1')
 	### Enable and start all the process that uses port 53.
-	os.system('systemctl enable systemd-resolved.service >/dev/null 2>&1') 
-	os.system('systemctl start systemd-resolved >/dev/null 2>&1')  
+	# for systemctl explain -> https://wiki.archlinux.org/index.php/Systemd
+	os.system('systemctl enable systemd-resolved.service >/dev/null 2>&1') #https://wiki.archlinux.org/index.php/Systemd-resolved
+	os.system('systemctl start systemd-resolved >/dev/null 2>&1') # responsible on Local DNS
 
 
 ##############################################
@@ -48,14 +49,14 @@ def fake_ap_on():
 	### Replace airmon-ng.
 	os.system(' pkill -9 hostapd')
 	os.system(' pkill -9 dnsmasq')
-	os.system(' pkill -9 wpa_supplicant')
-	os.system(' pkill -9 avahi-daemon')
-	os.system(' pkill -9 dhclient')
+	os.system(' pkill -9 wpa_supplicant') #https://wiki.archlinux.org/index.php/Wpa_supplicant
+	os.system(' pkill -9 avahi-daemon') #https://wiki.archlinux.org/index.php/Avahi
+	os.system(' pkill -9 dhclient') # provide on DHCP https://linux.die.net/man/8/dhclient
 	os.system('killall dnsmasq >/dev/null 2>&1')
 	os.system('killall hostapd >/dev/null 2>&1')
 	os.system(ifconfig)
 	### Define the default gateway.
-	os.system('route add default gw 10.0.0.1')
+	os.system('route add default gw 10.0.0.1') #A default gateway is the node in a computer network using the internet protocol suite that serves as the forwarding host (router) to other networks when no other route specification matches the destination IP address of a packet.
 	### Enable IP forwarding (1 indicates to enable / 0 indicates to disable)
 	os.system('echo 1 > /proc/sys/net/ipv4/ip_forward')
 	### Flush all chains - delete all of the firewall rules.
