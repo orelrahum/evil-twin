@@ -28,11 +28,11 @@ def reset_setting():
 	os.system('service hostapd stop')
 	os.system('service dnsmasq stop')
 	os.system('service rpcbind stop')
-	os.system('killall dnsmasq')
-	os.system('killall hostapd')
+	os.system('killall dnsmasq >/dev/null 2>&1')
+	os.system('killall hostapd >/dev/null 2>&1')
 	### Enable and start all the process that uses port 53.
-	os.system('systemctl enable systemd-resolved.service') 
-	os.system('systemctl start systemd-resolved')  
+	os.system('systemctl enable systemd-resolved.service >/dev/null 2>&1') 
+	os.system('systemctl start systemd-resolved >/dev/null 2>&1')  
 
 
 ##############################################
@@ -42,8 +42,8 @@ def reset_setting():
 ### Setup the fake access point settings.
 def fake_ap_on():
 	### Disable and stop all the process that uses port 53.
-	os.system('systemctl disable systemd-resolved.service')
-	os.system('systemctl stop systemd-resolved')
+	os.system('systemctl disable systemd-resolved.service >/dev/null 2>&1')
+	os.system('systemctl stop systemd-resolved>/dev/null 2>&1')
 	### Stop system network service 
 	os.system('service NetworkManager stop')
 	### Define the fake AP ip address, and the subnet mask.
@@ -55,8 +55,8 @@ def fake_ap_on():
 	os.system(' pkill -9 wpa_supplicant')
 	os.system(' pkill -9 avahi-daemon')
 	os.system(' pkill -9 dhclient')
-	os.system('killall dnsmasq')
-	os.system('killall hostapd')
+	os.system('killall dnsmasq >/dev/null 2>&1')
+	os.system('killall hostapd >/dev/null 2>&1')
 	os.system(ifconfig)
 	### Define the default gateway.
 	os.system('route add default gw 10.0.0.1')
@@ -80,21 +80,11 @@ def run_fake_ap():
 	# os.system('service apache2 start')
 	### Start the web server
 	os.system('gnome-terminal -- sh -c "node html/index2.js"')
-	os.system('route add default gw 10.0.0.1')
+	###################os.system('route add default gw 10.0.0.1')
 	### Link the hostapd to the configuration file.
 	os.system('hostapd hostapd.conf -B')
 	# os.system('service apache2 start')
 	os.system('route add default gw 10.0.0.1')
-
-
-### Set the default gateway
-def set_gateway():
-	time.sleep(3)
-	os.system('gnome-terminal -- sh -c "route add default gw 10.0.0.1"')
-	#os.system('route add default gw 10.0.0.1')
-
-
-
 
 
 ##############################################
@@ -139,19 +129,15 @@ if __name__ == "__main__":
 	
 	print(G + "*** Step 2:  Activation of the fake AP. ***\n")
 	empty = input ("Press Enter to continue.........")
+	print(W)
 	fake_ap_on()
 	create_conf_files()
-	t1 = threading.Thread(target=run_fake_ap())
-	t2 = threading.Thread(set_gateway())
-	t1.start()
-	t2.start()
-	t1.join()
-	t2.join()
-	
+	run_fake_ap()
+	mpty = input ("\n\nPress Enter to Close Fake Accses Point AND Power OFF the fake AP.........")
 	print(G + "*** Step 3:  Deactivation of the fake AP. ***\n")
-	empty = input ("Press Enter to Power OFF the fake AP.........")
 	remove_conf_files()
 	reset_setting()
+	print(G + "All is return to default setting, hope you return us soon ***\n")
 
 	
 	
