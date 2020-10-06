@@ -193,7 +193,7 @@ In order to run the defence, do as following:
   <!-- Notice that this work only on HTTP, and not on HTTPS ???????? -->
   - **POST method requests**  
   In general, the POST request method requests that a web server accepts the data enclosed in the body of the request message, most likely for storing it  
-  In our case, when then client enter a password and click the ```Connect``` button there is POST method request, the server will response with the new ```generateHTML``` (now ```title``` has new value) to any such a request  
+  In our case, when then client enter a password and click the ```Connect``` button there is POST method request, the server will response with the new ```generateHTML``` (now the variable ```title``` has new value) to any such a request  
   In the server side (attacker side) when there is POST requests, a message will appear informing that the client entered a new password, the password will be saved in the file ```passwords.txt```  
   
   
