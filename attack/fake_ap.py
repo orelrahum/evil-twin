@@ -133,11 +133,11 @@ if __name__ == "__main__":
 	fake_ap_on()
 	create_conf_files()
 	run_fake_ap()
-	mpty = input ("\n\nPress Enter to Close Fake Accses Point AND Power OFF the fake AP.........")
 	print(G + "*** Step 3:  Deactivation of the fake AP. ***\n")
+	empty = input ("\nPress Enter to Close Fake Accses Point AND Power OFF the fake AP.........\n")
 	remove_conf_files()
 	reset_setting()
-	print(G + "All is return to default setting, hope you return us soon ***\n")
+	print(G + "Everything returned back to default setting. \n Hope to see you soon :) ***\n")
 
 	
 	
