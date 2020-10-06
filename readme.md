@@ -235,7 +235,7 @@ To run and test the web server, do as following:
       to  
       ```os.system('gnome-terminal -- sh -c "node html/index2.js <iface> essid"')```, such that *```<iface>```* is the extra network interface
    4. If you are not running ```fake_ap.py```, run the command ```$ node index2.js <iface> <ssid>``` as root, such that *```<iface>```* is the extra network interface, and *```<ssid>```* is the name of the AP you want to try to connect to:
-   
+    ![web server_iface ssid](https://github.com/orelrahum/evil-twin/blob/master/pictures2/8.2%20-%20web_server%2Biface-ssid.png)
    5. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the HTML page
    6. In the text box enter a password, if you want the test the checking password part you may want to enter the correct password to the *```<ssid>```*, and an incorrect password
    7. A related message, whether the password was correct or incorrect, will appear at the top of the presented HTML 
