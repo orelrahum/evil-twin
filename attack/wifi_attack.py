@@ -87,9 +87,11 @@ def ap_scan():
     global search_timeout
     search_timeout = int(input(G + "Please enter the scanning time frame in seconds: "))
     channel_changer = Thread(target = change_channel)
+    # A daemon thread runs without blocking the main program from exiting
     channel_changer.daemon = True
     channel_changer.start()
     print("\n Scanning for networks...\n")
+    # Sniffing packets
     sniff(iface = interface, prn = ap_scan_pkt, timeout=search_timeout)
     num_of_ap = len(ap_list)
     if num_of_ap > 0: 
@@ -148,18 +150,23 @@ def set_channel(channel):
 
 
 ### sniff(..., prn = scan_netwroks, ...) 
-### The argument 'prn' allows us to pass a function that executes with each packet sniffed. 
+### The argument 'prn' allows us to pass a function that executes with each packet sniffed
 def ap_scan_pkt(pkt):
+    # We are interested only in Beacon frame
+    # Beacon frames are transmitted periodically, they serve to announce the presence of a wireless LAN
     if pkt.haslayer(Dot11Beacon):
         # Get the source MAC address - BSSID of the AP
         bssid = pkt[Dot11].addr2
         # Get the ESSID (name) of the AP
         essid = pkt[Dot11Elt].info.decode()
+        # Check if the new found AP is already in the AP set
         if essid not in essids_set:
             essids_set.add(essid)
+            # network_stats() function extracts some useful information from the network - such as the channel
             stats = pkt[Dot11Beacon].network_stats()
             # Get the channel of the AP
             channel = stats.get("channel")
+            # Add the new found AP to the AP list
             ap_list.append([essid, bssid, channel])
             # print("AP name: %s,\t BSSID: %s,\t Channel: %d." % (essid, bssid, channel))
 
