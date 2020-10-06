@@ -204,6 +204,7 @@ Notice that you can run this file separately to test that it works
 If you run it without running the [```fake_ap.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/fake_ap.py), no client will be able to access it  
 If you run [```fake_ap.py```](https://github.com/orelrahum/evil-twin/blob/master/attack/fake_ap.py), it will automatically open a new terminal window and run the web server in it  
 
+
 #### Option 1 - Manually check the password
 In order to run and test the web server, do as following:
    1. Go to ```evil-twin/attack/html``` folder
@@ -242,5 +243,7 @@ To run and test the web server, do as following:
    8. Go to ```passwords.txt``` file and you should see the passwords you entered. You should also see a messages with the passwords in the terminal window
    9. And most importantly, HAVE FUN :) 
 
-   
-   
+### Possible errors
+  * Port 80 aleady in use:  
+    ![web-server_error-80](https://github.com/orelrahum/evil-twin/blob/master/pictures2/web-server_error-80.png)  
+    This means that you probably have another web server (Apache, IIS, etc.) that in use at the moment, and you need to stop it's service. For example, if you have Apache in use, you need to run the command ```$ sudo service apache2 stop```   
