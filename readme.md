@@ -122,11 +122,12 @@ In this part there are 2 options to run the code, either run a full attack (Part
   
   In order to run full attack, do as following:
   1. Go to ```evil-twin/attack``` folder
-  2. Run the command ```$ python3 wifi_attack.py``` as root (see picture below)
+  2. Run the command ```$ python3 wifi_attack.py``` as root:
+    ![wifi_attack](https://github.com/orelrahum/evil-twin/blob/master/pictures2/1%20-%20wifi_attack_run.png)
   3. Follow the instructions as in the code
   4. And most importantly, HAVE FUN :) 
   
-  ![wifi_attack](https://github.com/orelrahum/evil-twin/blob/master/pictures2/1%20-%20wifi_attack_run.png)
+  
 
 #### Option 2 - Fake AP (Part 2)
 - Just run the fake AP  
@@ -135,11 +136,12 @@ In this option you need to choose the name of the fake AP
 
 In order to run the fake AP, do as following:
   1. Go to ```evil-twin/attack``` folder
-  2. Run the command ```$ python3 fake_ap.py <your_fake_ap_name>``` as root (see picture below), such that *```<your_fake_ap_name>```* is the name of the fake AP. 
+  2. Run the command ```$ python3 fake_ap.py <your_fake_ap_name>``` as root, such that *```<your_fake_ap_name>```* is the name of the fake AP:
+    ![fake_ap](https://github.com/orelrahum/evil-twin/blob/master/pictures2/7.1%20-%20fake_ap%2Bname.png)
   3. Follow the instructions as in the code
   4. And most importantly, HAVE FUN :) 
 
-![fake_ap](https://github.com/orelrahum/evil-twin/blob/master/pictures2/7.1%20-%20fake_ap%2Bname.png)
+
 
 <!-- ----------------------------------------------------------------------- -->
 <!-- -------------- Defence Part (Files & How to run the code) ------------- -->
@@ -164,11 +166,12 @@ In order to run the fake AP, do as following:
 ### How to run the code
 In order to run the defence, do as following:
    1. Go to ```evil-twin/defence``` folder
-   2. Run the command ```$ python3 defence.py``` as root (see picture below)
+   2. Run the command ```$ python3 defence.py``` as root:
+    ![defence run](https://github.com/orelrahum/evil-twin/blob/master/pictures2/10%20-%20defence_run.png)
    3. Follow the instructions as in the code
    4. And most importantly, HAVE FUN :) 
    
-   ![defence run](https://github.com/orelrahum/evil-twin/blob/master/pictures2/10%20-%20defence_run.png)
+   
    
 <!-- ----------------------------------------------------------------------- -->
 <!-- ------------- WebServer Part (Files & How to run the code) ------------ -->
@@ -204,7 +207,7 @@ If you run [```fake_ap.py```](https://github.com/orelrahum/evil-twin/blob/master
 #### Option 1 - Manually check the password
 In order to run and test the web server, do as following:
    1. Go to ```evil-twin/attack/html``` folder
-   2. Run the command ```$ node index2.js``` as root
+   2. Run the command ```$ node index2.js``` as root:
      ![web server run](https://github.com/orelrahum/evil-twin/blob/master/pictures2/8.1%20-%20web_server.png)
    3. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the HTML page
    4. In the text box enter the password, you can enter a random sequence of letters and numbers just for the test
@@ -231,7 +234,8 @@ To run and test the web server, do as following:
       ```os.system('gnome-terminal -- sh -c "node html/index2.js"')```  
       to  
       ```os.system('gnome-terminal -- sh -c "node html/index2.js <iface> essid"')```, such that *```<iface>```* is the extra network interface
-   4. If you are not running ```fake_ap.py```, run in the terminal the command ```$ node index2.js <iface> <ssid>``` as root, such that *```<iface>```* is the extra network interface, and *```<ssid>```* is the name of the AP you want to try to connect to
+   4. If you are not running ```fake_ap.py```, run the command ```$ node index2.js <iface> <ssid>``` as root, such that *```<iface>```* is the extra network interface, and *```<ssid>```* is the name of the AP you want to try to connect to:
+   
    5. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the HTML page
    6. In the text box enter a password, if you want the test the checking password part you may want to enter the correct password to the *```<ssid>```*, and an incorrect password
    7. A related message, whether the password was correct or incorrect, will appear at the top of the presented HTML 
