@@ -72,7 +72,7 @@ def fake_ap_on():
 	os.system('iptables -P FORWARD ACCEPT')
  
 
-### Link dnsmasq and hostapd to the configuration files. And Run the apache server.
+### Link dnsmasq and hostapd to the configuration files. And Run the web server.
 def run_fake_ap():
 	### Link the dnsmasq to the configuration file.
 	os.system('dnsmasq -C dnsmasq.conf')
