@@ -243,7 +243,7 @@ To run and test the web server, do as following:
    8. Go to ```passwords.txt``` file and you should see the passwords you entered. You should also see a messages with the passwords in the terminal window
    9. And most importantly, HAVE FUN :) 
 
-## Common Errors and Solutions
+## Common errors and Suggested solutions
   ### Attack and Defence
   * Error for "Set Frequency":  
     ![frequence_error](https://github.com/orelrahum/evil-twin/blob/master/pictures2/frequence_error.png)  
