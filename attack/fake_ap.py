@@ -54,7 +54,7 @@ def fake_ap_on():
 	os.system('killall dnsmasq >/dev/null 2>&1')
 	os.system('killall hostapd >/dev/null 2>&1')
 	ifconfig="ifconfig "+ interface2 +" 10.0.0.1 netmask 255.255.255.0"
-	os.system('ifconfig')
+	os.system(ifconfig)
 	### Define the default gateway.
 	os.system('route add default gw 10.0.0.1')
 	### Enable IP forwarding (1 indicates to enable / 0 indicates to disable)
