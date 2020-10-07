@@ -2,6 +2,18 @@ from scapy.all import *
 import os
 import sys
 
+'''
+Deauthentication packet:
+Type = 0
+Subtype = 0xC
+Reciver addr
+Destenation addr
+Transmitter addr
+Source addr
+BSSID - AP MAC addr
+Reason code - what happend that cause disconnection
+'''
+
 ### Client MAC address
 client = sys.argv[1]
 ### AP MAC address
