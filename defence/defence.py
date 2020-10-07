@@ -177,6 +177,7 @@ def packet_handler(pkt):
 	global start_time
 	# If we capture deauthentication packet
 	#  Deauthentication frame is management frame (type 0) and subtype 12 (0xC) 
+	# Management frames are used by IEEE 802.11 to permit a wireless client to negotiate with a Wireless Access Point 
 	if pkt.type == 0 and pkt.subtype == 0xC:
 		try:
 			# If we capture deauthentication packet that intended to the choosen AP
