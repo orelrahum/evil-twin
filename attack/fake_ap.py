@@ -43,7 +43,6 @@ def fake_ap_on():
 	### Stop system network service 
 	os.system('service NetworkManager stop')
 	### Define the interface to be used as the fake AP & Define the fake AP IP address and subnet mask.
-	ifconfig="ifconfig "+ interface2 +" 10.0.0.1 netmask 255.255.255.0"
 	# os.system('airmon-ng check kill')
 	# Stops network managers & Kill interfering processes left
 	### Replace airmon-ng.
@@ -54,7 +53,8 @@ def fake_ap_on():
 	os.system(' pkill -9 dhclient') # DHCP Client
 	os.system('killall dnsmasq >/dev/null 2>&1')
 	os.system('killall hostapd >/dev/null 2>&1')
-	# os.system('ifconfig')
+	ifconfig="ifconfig "+ interface2 +" 10.0.0.1 netmask 255.255.255.0"
+	os.system('ifconfig')
 	### Define the default gateway.
 	os.system('route add default gw 10.0.0.1')
 	### Enable IP forwarding (1 indicates to enable / 0 indicates to disable)
@@ -78,7 +78,7 @@ def run_fake_ap():
 	# os.system('service apache2 start')
 	### Start the web server
 	os.system('gnome-terminal -- sh -c "node html/index2.js"')
-	# os.system('route add default gw 10.0.0.1')
+	os.system('route add default gw 10.0.0.1')
 	### Link the hostapd to the configuration file.
 	os.system('hostapd hostapd.conf -B')
 	# os.system('service apache2 start')
