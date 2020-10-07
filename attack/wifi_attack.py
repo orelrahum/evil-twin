@@ -154,7 +154,7 @@ def set_channel(channel):
     os.system('iwconfig %s channel %d' % (interface, channel))
 
 
-### sniff(..., prn = scan_netwroks, ...) 
+### sniff(..., prn = ap_scan_pkt, ...) 
 ### The argument 'prn' allows us to pass a function that executes with each packet sniffed
 def ap_scan_pkt(pkt):
     # We are interested only in Beacon frame
@@ -236,7 +236,8 @@ def client_scan():
             client_scan()
   
 
-### Same as 'ap_scan_pkt()' but for the clients. 
+### sniff(..., prn = client_scan_pkt, ...) 
+### The argument 'prn' allows us to pass a function that executes with each packet sniffed 
 def client_scan_pkt(pkt):
     global client_list
     # We are interested in packets that send from/to the choosen AP to/from a single client (not broadcast)
