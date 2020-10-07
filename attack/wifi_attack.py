@@ -198,10 +198,12 @@ def client_scan():
     # We need the client to send packet to the AP and it may take time, so we double the scan time
     s_timeout = search_timeout * 2
     print(G + "\nScanning for clients that connected to: " + ap_name + " ...")
+    '''
     channel_changer = Thread(target=change_channel)
     # A daemon thread runs without blocking the main program from exiting
     channel_changer.daemon = True
     channel_changer.start()
+    '''
     # Sniffing packets - scanning the network for clients which are connected to the choosen AP 
     sniff(iface=interface, prn=client_scan_pkt, timeout=s_timeout)
     num_of_client = len(client_list)
@@ -240,7 +242,7 @@ def client_scan():
 ### The argument 'prn' allows us to pass a function that executes with each packet sniffed 
 def client_scan_pkt(pkt):
     global client_list
-    # We are interested in packets that send from/to the choosen AP to/from a single client (not broadcast)
+    # We are interested in packets that send from the choosen AP to a client (not broadcast)
     # ff:ff:ff:ff:ff:ff - broadcast address 
     if (pkt.addr2 == ap_mac or pkt.addr3 == ap_mac) and pkt.addr1 != "ff:ff:ff:ff:ff:ff":
         if pkt.addr1 not in client_list:
