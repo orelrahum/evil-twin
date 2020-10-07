@@ -39,6 +39,7 @@ def monitor_mode():
     os.system('ifconfig')
     interface = input(G + "Please enter the interface name you want to put in 'monitor mode': ")
     print(W)
+    # Put the choosen interface in 'monitor mode'
     os.system('ifconfig ' + interface + ' down')
     os.system('iwconfig ' + interface + ' mode monitor')
     os.system('ifconfig ' + interface + ' up')
