@@ -5,6 +5,10 @@ import sys
 ##############################################
 ######## hostapd configuration file ##########
 ##############################################
+'''
+hostapd (host access point daemon) is a user space daemon software 
+enabling a network interface card to act as an access point and authentication server
+'''
  
 # Set the interface that will be  used as the fake AP.
 line1="interface="+ sys.argv[1] + "\n"
@@ -31,6 +35,13 @@ hostapd_file.write(line4)
 ##############################################
 ######## dnsmasq configuration file ##########
 ##############################################
+'''
+dnsmasq is free software intended for small computer networks
+dnsmasq is providing: 
+Domain Name System (DNS) caching, 
+a Dynamic Host Configuration Protocol (DHCP) server, 
+router advertisement, and network boot features,
+'''
 
 # Set the interface that will be  used as the fake AP.
 line1="interface="+sys.argv[1]+"\n"
