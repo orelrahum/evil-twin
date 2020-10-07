@@ -50,6 +50,7 @@ def managed_mode():
     print(G + "\n*** Step 4: Put the interface back in 'managed mode'. *** \n")
     empty = input ("Press Enter in order to put " + interface + " in 'managed mode' .........\n")
     print(W)
+    # Put the choosen interface back in 'managed mode'
     os.system('ifconfig ' + interface + ' down')
     os.system('iwconfig ' + interface + ' mode managed')
     os.system('ifconfig ' + interface + ' up')
