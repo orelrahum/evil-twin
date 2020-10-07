@@ -14,7 +14,7 @@ GR = '\033[37m' # gray
 T  = '\033[93m' # tan
 
 
-### Reset all the setting before we satrt. 
+### Reset all the setting before we satrt or when we finish
 def reset_setting():
 	### Start system network service
 	os.system('service NetworkManager start')
@@ -26,7 +26,7 @@ def reset_setting():
 	os.system('service rpcbind stop') # Remote Procedure Call bind
 	os.system('killall dnsmasq >/dev/null 2>&1')
 	os.system('killall hostapd >/dev/null 2>&1')
-	### Enable and start all the process that uses port 53 in general
+	### Enable and start the local DNS stub listener that uses port 53 
 	os.system('systemctl enable systemd-resolved.service >/dev/null 2>&1') 
 	os.system('systemctl start systemd-resolved >/dev/null 2>&1') 
 
@@ -37,7 +37,7 @@ def reset_setting():
 	
 ### Setup the fake access point settings.
 def fake_ap_on():
-	### Disable and stop all the process that uses port 53.
+	### Disable and stop the local DNS stub listener that uses port 53.
 	os.system('systemctl disable systemd-resolved.service >/dev/null 2>&1')
 	os.system('systemctl stop systemd-resolved>/dev/null 2>&1')
 	### Stop system network service 
@@ -54,10 +54,11 @@ def fake_ap_on():
 	os.system(' pkill -9 dhclient') # DHCP Client
 	os.system('killall dnsmasq >/dev/null 2>&1')
 	os.system('killall hostapd >/dev/null 2>&1')
-	os.system(ifconfig)
+	# os.system('ifconfig')
 	### Define the default gateway.
 	os.system('route add default gw 10.0.0.1')
 	### Enable IP forwarding (1 indicates to enable / 0 indicates to disable)
+	# IP forwarding/Internet routing - is a process used to determine which path a packet or datagram can be sent.
 	os.system('echo 1 > /proc/sys/net/ipv4/ip_forward')
 	### Flush all chains - delete all of the firewall rules.
 	# Chain is the set of rules that filter the incoming and outgoing data packets.
