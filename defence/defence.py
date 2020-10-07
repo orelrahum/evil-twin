@@ -175,8 +175,8 @@ count = 0
 def packet_handler(pkt):
 	global count
 	global start_time
-	# type = 0 - attackers can maliciously use IPv6 Type 0 Routing headers to bypass packet filters or anycast addressing and routing
-	# subtype = 0xC - stand for deauthentication packet
+	# If we capture deauthentication packet
+	#  Deauthentication frame is management frame (type 0) and subtype 12 (0xC) 
 	if pkt.type == 0 and pkt.subtype == 0xC:
 		try:
 			# If we capture deauthentication packet that intended to the choosen AP
