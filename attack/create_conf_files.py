@@ -51,7 +51,7 @@ line2="dhcp-range=10.0.0.10,10.0.0.100,8h\n"
 line3="dhcp-option=3,10.0.0.1\n"
 # Set the DNS server address of the fake AP (6 stand for DNS server address).
 line4="dhcp-option=6,10.0.0.1\n"
-# Set the IP address of the fake AP.
+# Set the IP address of the fake AP. All queries will be sent to this address.
 line5="address=/#/10.0.0.1\n"
 
 ### If this file is exists, we delete it.
