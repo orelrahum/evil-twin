@@ -9,8 +9,6 @@ ap_list = []
 ESSID = 0
 BSSID = 1
 CHANNEL = 2
-
-client_list = []
 essids_set = set()
 
 ### Console colors
@@ -77,9 +75,14 @@ def ap_scan():
     global search_timeout
     search_timeout = int(input(G + "Please enter the scanning time frame in seconds: "))
     channel_changer = Thread(target = change_channel)
+    # A daemon thread runs without blocking the main program from exiting
     channel_changer.daemon = True
     channel_changer.start()
     print("\n Scanning for networks...\n")
+    # Sniffing packets - scanning the network for AP in the area
+    # iface – the interface that is in monitor mode
+    # prn – function to apply to each packet
+    # timeout – stop sniffing after a given time
     sniff(iface = interface, prn = ap_scan_pkt, timeout=search_timeout)
     num_of_ap = len(ap_list)
     if num_of_ap > 0: 
@@ -88,26 +91,17 @@ def ap_scan():
         for x in range(num_of_ap):
             print("[" + str(x) + "] - BSSID: " + ap_list[x][BSSID] + " \t Channel:" + str(ap_list[x][CHANNEL]) + " \t AP name: " + ap_list[x][ESSID]) 
         print("\n************* FINISH SCANNING *************\n")
+	# Choosing the AP to defence
         ap_index = int(input("Please enter the number of the AP you want to attack: "))
+	# Print the choosen AP
         print("You choose the AP: [" + str(ap_index) + "] - BSSID: " + ap_list[ap_index][BSSID] + " Channel:" + str(ap_list[ap_index][CHANNEL]) + " AP name: " + ap_list[ap_index][ESSID])
-        set_channel(int(ap_list[ap_index][CHANNEL]))
+        # set_channel(int(ap_list[ap_index][CHANNEL]))
         global ap_mac
         global ap_name
         global ap_channel
         ap_mac = ap_list[ap_index][BSSID]
         ap_name = ap_list[ap_index][ESSID]
         ap_channel = ap_list[ap_index][CHANNEL]
-        '''
-        data = {}
-        data['AP'] = []
-        data['AP'].append({
-            'name': ap_name,
-            'chnnel': ap_channel,
-            'mac': ap_mac
-            })
-        with open('data.txt', 'w') as outfile:
-            json.dump(data, outfile)
-            '''
     else: 
         # If no AP was found. 
         rescan = input("No networks were found. Do you want to rescan? [Y/n] ")
@@ -130,13 +124,14 @@ def change_channel():
         channel_switch = channel_switch % 14 + 1
         time.sleep(0.5)
 
-
+'''
 ### After the user choose the AP he want to attack, we want to set the interface's channel to the same channel as the choosen AP. 
 def set_channel(channel):
     os.system('iwconfig %s channel %d' % (interface, channel))
+'''
 
 
-### sniff(..., prn = scan_netwroks, ...) 
+### sniff(..., prn = ap_scan_pkt, ...) 
 ### The argument 'prn' allows us to pass a function that executes with each packet sniffed. 
 def ap_scan_pkt(pkt):
     if pkt.haslayer(Dot11Beacon):
@@ -156,40 +151,39 @@ def ap_scan_pkt(pkt):
 
 
 ##############################################
-############## Deauthentication ##############
+########## Deauthentication Defence ##########
 ##############################################
 
-### In this function we sniff all the packets, and if we recognize that 30 packets of deauthentication has been sniffed we will alert that there is attempt to do deathentication attack in your network's area
+### In this function we will sniff packets and search for deauthentication packets
+### If we recognize that 30 packets of deauthentication has been sniffed within 60 seconds
+### We will alert that there is deathentication attack on the choosen AP
 def deathentication_check():
 	print(G + "*** Step 3: Sniffing the packets and checking for deauthentication attack. *** \n")
 	print(G + "In case that will be sniffed 30 deauthentication packets, you will alerted that there is attempt to do deathentication attack to the AP you choose. \n")
 	empty = input ("Press Enter to continue.........\n")
 	print(B + "Sniffing packets for 60 second ...")
 	print(W)
-	
+	# Sniffing packets - searching for deauthentication packets that are sending to the choosen AP 
 	sniff(iface=interface, prn = packet_handler , stop_filter=stopfilter)
 	# sniff(iface="wlxc83a35c2e0b7", prn = PacketHandler , stop_filter=stopfilter)
 	print(W)
 
 
-### sniff(..., prn = scan_netwroks, ...) 
+### sniff(..., prn = packet_handler, ...) 
 ### The argument 'prn' allows us to pass a function that executes with each packet sniffed. 
 count = 0
 def packet_handler(pkt):
 	global count
 	global start_time
-	# 0xC - stand for deauthentication paket
+	# type = 0 - attackers can maliciously use IPv6 Type 0 Routing headers to bypass packet filters or anycast addressing and routing
+	# subtype = 0xC - stand for deauthentication packet
 	if pkt.type == 0 and pkt.subtype == 0xC:
 		try:
-			#print(W +  "address 1  " +str(pkt.addr1))
-			#print(W +  "address 2  " +str(pkt.addr2))
-			#print(W +  "address 3  " +str(pkt.addr2))
-			#print ("the ap_mac is :" + ap_mac)
+			# If we capture deauthentication packet that intended to the choosen AP
 			if ap_mac in str(pkt.addr2):
 				count=count+1
 				print (O + "Deauthentication packet has been sniffed. Packet number: " + str(count))
 		except:
-			#pass
 			print("An exception occurred")
 	# If 60 sec had passed and deauthentication attack didn't occur, than we reset count to 0 and start counting again
 	if  time.time()-start_time > 60 :
