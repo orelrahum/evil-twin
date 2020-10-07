@@ -23,7 +23,7 @@ def reset_setting():
 	### Stop and kill the hostapd and dnsmasq services.
 	os.system('service hostapd stop') #hostapd (host access point daemon) for make access point
 	os.system('service dnsmasq stop') #dsnmasq is to make DNS and DHCP server
-	os.system('service rpcbind stop') #https://linux.die.net/man/8/rpcbind#:~:text=The%20rpcbind%20utility%20is%20a,it%20is%20prepared%20to%20serve.
+	os.system('service rpcbind stop') # Remote Procedure Call bind
 	os.system('killall dnsmasq >/dev/null 2>&1')
 	os.system('killall hostapd >/dev/null 2>&1')
 	### Enable and start all the process that uses port 53 in general
@@ -50,8 +50,8 @@ def fake_ap_on():
 	os.system(' pkill -9 hostapd')
 	os.system(' pkill -9 dnsmasq')
 	os.system(' pkill -9 wpa_supplicant') 
-	os.system(' pkill -9 avahi-daemon') 
-	os.system(' pkill -9 dhclient') 
+	os.system(' pkill -9 avahi-daemon') # mDNS/DNS-SD
+	os.system(' pkill -9 dhclient') # DHCP Client
 	os.system('killall dnsmasq >/dev/null 2>&1')
 	os.system('killall hostapd >/dev/null 2>&1')
 	os.system(ifconfig)
@@ -65,7 +65,7 @@ def fake_ap_on():
 	os.system('iptables --table nat --flush')
 	os.system('iptables --delete-chain')
 	os.system('iptables --table nat --delete-chain')
-	### Allowing packets to pass through. 
+	### Allowing packets that routed through the system (=FORWARD) to pass through. 
 	os.system('iptables -P FORWARD ACCEPT')
  
 
