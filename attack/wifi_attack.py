@@ -2,9 +2,7 @@ import os
 import sys
 from scapy.all import *
 from scapy.layers.dot11 import Dot11, Dot11Beacon, Dot11Elt 
-### Dot11 represent the MAC header, it is the abbreviated specification name 802.11
-### Dot11Elt layers is where we put the necessary information: SSID, supported speeds (up to eight), additional supported speeds, channel used.
-### Dot11Beacon represents an IEEE 802.11 Beacon
+
 # Reference to the scanning parts - https://www.thepythoncode.com/article/building-wifi-scanner-in-python-scapy
 
 # import json
@@ -155,6 +153,9 @@ def change_channel():
 def set_channel(channel):
     os.system('iwconfig %s channel %d' % (interface, channel))
 
+### Dot11 represent the MAC header, it is the abbreviated specification name 802.11
+### Dot11Elt layers is where we put the necessary information: SSID, supported speeds (up to eight), additional supported speeds, channel used.
+### Dot11Beacon represents an IEEE 802.11 Beacon
 
 ### sniff(..., prn = ap_scan_pkt, ...) 
 ### The argument 'prn' allows us to pass a function to apply to each packet sniffed
