@@ -43,7 +43,7 @@ def remove_conf_files():
 if __name__ == "__main__":
 	reset_setting() 
 	remove_conf_files()
-	reset_setting
+	
 
 	
 	
