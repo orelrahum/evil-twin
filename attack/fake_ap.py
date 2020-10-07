@@ -112,6 +112,7 @@ if __name__ == "__main__":
 	print(B + "********************************************************************** \n")
 	print("******** Part 2: Set up & upload fake AP. MOHAHA. WE ARE EVIL ******** \n")
 	print("********************************************************************** \n")
+	
 	### Step 1: Choosing the interface to be used as the AP
 	print(G + "*** Step 1:  Choosing an interface that will be used for the fake AP. ***\n")
 	empty = input ("Press Enter to continue.........")
