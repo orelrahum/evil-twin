@@ -27,7 +27,7 @@ def reset_setting():
 	os.system('killall dnsmasq >/dev/null 2>&1')
 	os.system('killall hostapd >/dev/null 2>&1')
 	### Enable and start all the process that uses port 53.
-	# for systemctl explain -> https://wiki.archlinux.org/index.php/Systemd
+	# For 'systemctl' and 'systemd' see explaination in - https://wiki.archlinux.org/index.php/Systemd
 	os.system('systemctl enable systemd-resolved.service >/dev/null 2>&1') #https://wiki.archlinux.org/index.php/Systemd-resolved
 	os.system('systemctl start systemd-resolved >/dev/null 2>&1') # responsible on Local DNS
 
@@ -77,7 +77,7 @@ def run_fake_ap():
 	# os.system('service apache2 start')
 	### Start the web server
 	os.system('gnome-terminal -- sh -c "node html/index2.js"')
-	###################os.system('route add default gw 10.0.0.1')
+	# os.system('route add default gw 10.0.0.1')
 	### Link the hostapd to the configuration file.
 	os.system('hostapd hostapd.conf -B')
 	# os.system('service apache2 start')
@@ -125,7 +125,7 @@ if __name__ == "__main__":
 	
 	# ssid=input("Please enter the SSID name ")
 	global essid
-	# the name of the fake AP
+	# The name of the fake AP (input)
 	essid = sys.argv[1] 
 	
 	### Step 2: Activate the fake AP
