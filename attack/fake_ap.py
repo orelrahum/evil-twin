@@ -26,10 +26,9 @@ def reset_setting():
 	os.system('service rpcbind stop') #https://linux.die.net/man/8/rpcbind#:~:text=The%20rpcbind%20utility%20is%20a,it%20is%20prepared%20to%20serve.
 	os.system('killall dnsmasq >/dev/null 2>&1')
 	os.system('killall hostapd >/dev/null 2>&1')
-	### Enable and start all the process that uses port 53.
-	# For 'systemctl' and 'systemd' see explaination in - https://wiki.archlinux.org/index.php/Systemd
-	os.system('systemctl enable systemd-resolved.service >/dev/null 2>&1') #https://wiki.archlinux.org/index.php/Systemd-resolved
-	os.system('systemctl start systemd-resolved >/dev/null 2>&1') # responsible on Local DNS
+	### Enable and start all the process that uses port 53 in general
+	os.system('systemctl enable systemd-resolved.service >/dev/null 2>&1') 
+	os.system('systemctl start systemd-resolved >/dev/null 2>&1') 
 
 
 ##############################################
@@ -43,20 +42,21 @@ def fake_ap_on():
 	os.system('systemctl stop systemd-resolved>/dev/null 2>&1')
 	### Stop system network service 
 	os.system('service NetworkManager stop')
-	### Define the fake AP ip address, and the subnet mask.
+	### Define the interface to be used as the fake AP & Define the fake AP IP address and subnet mask.
 	ifconfig="ifconfig "+ interface2 +" 10.0.0.1 netmask 255.255.255.0"
 	# os.system('airmon-ng check kill')
+	# Stops network managers & Kill interfering processes left
 	### Replace airmon-ng.
 	os.system(' pkill -9 hostapd')
 	os.system(' pkill -9 dnsmasq')
-	os.system(' pkill -9 wpa_supplicant') #https://wiki.archlinux.org/index.php/Wpa_supplicant
-	os.system(' pkill -9 avahi-daemon') #https://wiki.archlinux.org/index.php/Avahi
-	os.system(' pkill -9 dhclient') # provide on DHCP https://linux.die.net/man/8/dhclient
+	os.system(' pkill -9 wpa_supplicant') 
+	os.system(' pkill -9 avahi-daemon') 
+	os.system(' pkill -9 dhclient') 
 	os.system('killall dnsmasq >/dev/null 2>&1')
 	os.system('killall hostapd >/dev/null 2>&1')
 	os.system(ifconfig)
 	### Define the default gateway.
-	os.system('route add default gw 10.0.0.1') #A default gateway is the node in a computer network using the internet protocol suite that serves as the forwarding host (router) to other networks when no other route specification matches the destination IP address of a packet.
+	os.system('route add default gw 10.0.0.1')
 	### Enable IP forwarding (1 indicates to enable / 0 indicates to disable)
 	os.system('echo 1 > /proc/sys/net/ipv4/ip_forward')
 	### Flush all chains - delete all of the firewall rules.
