@@ -10,7 +10,7 @@ ap = sys.argv[2]
 interface = sys.argv[3]
 
 
-### RadioTap()/Dot11
+### RadioTap()/Dot11(...)/Dot11Deauth() 
 # addr1: destination MAC address
 # addr2: source MAC address
 # addr3: BSSID - AP MAC address
