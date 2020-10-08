@@ -92,7 +92,7 @@ def ap_scan():
             print("[" + str(x) + "] - BSSID: " + ap_list[x][BSSID] + " \t Channel:" + str(ap_list[x][CHANNEL]) + " \t AP name: " + ap_list[x][ESSID]) 
         print("\n************* FINISH SCANNING *************\n")
 	# Choosing the AP to defence
-        ap_index = int(input("Please enter the number of the AP you want to attack: "))
+        ap_index = int(input("Please enter the number of the AP you want to defence: "))
 	# Print the choosen AP
         print("You choose the AP: [" + str(ap_index) + "] - BSSID: " + ap_list[ap_index][BSSID] + " Channel:" + str(ap_list[ap_index][CHANNEL]) + " AP name: " + ap_list[ap_index][ESSID])
         # set_channel(int(ap_list[ap_index][CHANNEL]))
