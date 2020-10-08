@@ -234,7 +234,7 @@ To run and test the web server, do as following:
       - In the function ```run_fake_ap()```, change the line  
       ```os.system('gnome-terminal -- sh -c "node html/index2.js"')```  
       to  
-      ```os.system('gnome-terminal -- sh -c "node html/index2.js <iface> essid"')```, such that *```<iface>```* is the extra network interface
+      ```os.system('gnome-terminal -- sh -c "node html/index2.js <iface> "+ essid + "')```, such that *```<iface>```* is the extra network interface
    4. If you are not running ```fake_ap.py```, run the command ```$ node index2.js <iface> <ssid>``` as root, such that *```<iface>```* is the extra network interface, and *```<ssid>```* is the name of the AP you want to try to connect to:
     ![web server_iface ssid](https://github.com/orelrahum/evil-twin/blob/master/pictures2/8.2%20-%20web_server%2Biface-ssid.png)
    5. Go to your browser and type in the URL ```http://127.0.0.1``` or ```http://localhost```, you should see the HTML page
