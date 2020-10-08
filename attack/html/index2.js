@@ -64,9 +64,9 @@ Here we check if the given password is correct
 # checkPassword - is a Promise
  const checkPassword = async (password) => {
     // Define the interface that will sent the connection request
-    const iface = process.argv[2];
+    const iface = process.argv[2].toString();
     // The name of the AP that we will try to connect to, in order to check the given password
-    const ssid = process.argv[3];
+    const ssid = process.argv[3].toString();
     //const iface = "wlxc83a35c2e0b7";
     //const ssid = "Linksys00314";
     // This function try to connect to the AP with the given password
